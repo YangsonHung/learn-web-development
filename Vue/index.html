@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>index</title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">{{message}}</div>
+		<div id="my_data">
+			<h1>{{site}}</h1>
+			<p>{{url}}</p>
+			<p>{{alexa}}</p>
+		</div>
+		<div id="me">
+			<p>姓名：{{name}}</p>
+			<p>性别：{{sex}}</p>
+			<p>年龄：{{age}}</p>
+		</div>
+		<script type="text/javascript">
+			// 当一个 Vue 实例被创建时，它向 Vue 的响应式系统中加入了其 data 对象中能找到的所有的属性。当这些属性的值发生改变时，html 视图将也会产生相应的变化。
+			var app = new Vue({
+				el: '#app',
+				data: {
+					message: 'Hello Vue!'
+				}
+			})
+			// 自定义数据
+			var data = {
+				site: "菜鸟教程",
+				url: "www.runoob.com",
+				alexa: 2233
+			}
+			// 实例化一个Vue对象
+			var vm = new Vue({
+				// el是DOM元素中的id
+				el: '#my_data',
+				// 数据传给data
+				data: data
+			})
+			// 比较是否相等
+			document.write(vm.site === data.site)
+			document.write("<br>")
+			// 修改vm的数据,会影响原始数据
+			vm.site = "Runoob"
+			document.write("site被修改:" + data.site + "<br>")
+
+			// 修改data的数据,影响vm的数据
+			data.alexa = 7788
+			document.write("alexa被修改:" + vm.alexa + "<hr>" + "<br>")
+
+
+			// 所以Vue的数据是双向绑定的
+
+			var human_data = {
+				name: "Yangson",
+				sex: "男",
+				age: 21
+			}
+			var human = new Vue({
+				el: "#me",
+				data: human_data
+			})
+			document.write("$ 的使用:" + "<br>")
+			document.write(human.$data === human_data)
+			document.write("<br>")
+			document.write(human.$el === document.getElementById('me'))
+			// $data 是Vue实例观察的数据对象
+			// $el 是Vue实例实例使用的根DOM元素
+			// $ 的目的是用以跟用户定义的属性区分开来
+		</script>
+	</body>
+</html>

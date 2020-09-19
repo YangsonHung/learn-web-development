@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        'use strict';
+        /*
+        var arr = [10, 20, 1, 2];
+        arr.sort(function(x, y) {
+            if (x < y) {
+                console.log("x < y","x:",x,"y:",y)
+                return -1;
+            }
+            if (x > y) {
+                console.log("x > y","x:",x,"y:",y)
+                return 1;
+            }
+            return 0;
+        });
+        console.log(arr);
+
+        var str = "1234"
+        console.log(str)
+        console.log(typeof str);
+        console.log(str.split('').reverse().join(''))
+
+
+        var arr2 = [12, 23, 34, 56,77,34,90]
+        console.log(arr2.sort())
+        */
+
+        
+        var arr = [2, 4, 6, 8]
+        var sum = arr.reduce(function (x, y) {
+            return x + y
+        })
+        //console.log(sum)
+        
+
+        /* next 方法调用generator */
+        /*
+        function* myg() {
+            yield 3;
+            yield 4;
+            return 5;
+        }
+        var re = myg()
+        console.log(re.next()) //返回3 
+        console.log(re.next()) //返回4
+        console.log(re.next()) //返回5
+        */
+        
+
+        //斐波那契数列
+        /*
+        function fib(max) {
+            var
+                t,
+                a = 0,
+                b = 1,  
+                arr = [0, 1];
+            while (arr.length < max) {
+                [a, b] = [b, a + b];
+                arr.push(b);
+            }
+            return arr;
+        }
+        console.log(fib(5))
+        */
+
+        //使用generator的斐波那契数列
+        function* fib2(max) {
+            var
+                t,
+                a = 0,
+                b = 1,
+                n = 0
+            while (n < max) {
+                yield a;
+                [a, b] = [b, a + b];
+                n++;
+            }
+            return;
+        }
+        var f = fib2(5)
+        /*
+        use next to call
+        console.log(f.next())
+        console.log(f.next())
+        console.log(f.next())
+        console.log(f.next())
+        console.log(f.next())
+        */
+        //use for of to call
+        for (var x of fib2(7)) {
+            console.log(x)
+        }
+
+        //use generator to create id
+        function* next_id() {
+            var num = 1;
+            while (true) {
+                yield num++;
+            }
+        }
+        /*test code*/
+        var
+            x,
+            pass = true,
+            g = next_id();
+        for (x = 1; x < 100; x++) {
+            if (g.next().value !== x) {
+                pass = false;
+                console.log('测试失败!');
+                break;
+            }
+        }
+        if (pass) {
+            console.log('测试通过!');
+        }
+        /* object to save status is not convenience*/
+        var fib3 = {
+            a: 0,
+            b: 1,
+            n: 0,
+            max: 5,
+            next: function () {
+                var
+                    r = this.a,
+                    t = this.a + this.b
+                this.a = this.b
+                this.b = t
+                if (this.n < this.max) {
+                    this.n++
+                    return r
+                } else {
+                    return undefined
+                }
+            }
+        }
+        console.log(fib3.next())
+        console.log(fib3.next())
+        console.log(fib3.next())
+        console.log(fib3.next())
+        console.log(fib3.next())
+
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

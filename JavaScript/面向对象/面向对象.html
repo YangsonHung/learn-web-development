@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>面向对象</title>
+</head>
+<body>
+    <script>
+        // Student原型
+        var Student = {
+            name: "robot",
+            height: 1.6,
+            run: function() {
+                console.log(this.name + " is running")
+            }
+        }
+        // Bird原型
+        var Bird = {
+            fly: function () {
+                console.log(this.name + ' is flying...')
+            }
+        }
+        var jack = {
+            name: "jack"
+        }
+        // 采用原型 这种方法不建议
+        jack.__proto__ = Student
+        jack.run()
+
+        // 改变原型
+        jack.__proto__ = Bird
+        jack.fly()
+
+        // 原型
+        var Person = {
+            name: 'human',
+            height: 0,
+            run: function () {
+                console.log(this.name + ' is running.')
+            }
+        }
+        function createStudent(name) {
+            // 基于Person原型创建一个新对象
+            var s = Object.create(Person)
+            // 初始化对象
+            s.name = name
+            // 返回新对象
+            return s
+        }
+        var xm = createStudent("小明")
+        xm.run()
+        console.log(xm.__proto__ === Person)
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>03-jQueryHTML</title>
+    <script src="js/jquery-3.4.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            // 获得所选元素的文本内容
+            console.log($(".p1").text())
+            // 获得所选元素的内容，包括HTML标记
+            console.log($(".p2").html())
+            // 获得表单字段的值
+            console.log($(".input1").val())
+            // 获取属性值
+            console.log($(".input1").attr("type"))
+
+            // 设置内容
+            $(".set-text").click(function () {
+                $(".p3").text("内容被设置")
+            })
+
+            // 回调函数
+            // i代表被选元素列表中的索引值，str代表元素的文本值
+            $("ul li").text(function (i, str) {
+                console.log(i, str)
+                // 函数可以返回一个新的值给元素
+                return 123
+            })
+
+            // 设置HTML内容
+            $(".set-html").click(function () {
+                $(".p4").html("<b>HTML内容被设置</b>")
+            })
+
+            // 设置值
+            $(".set-val").click(function () {
+                $(".input2").val("输入框的值被设置")
+
+            })
+
+            // 设置属性
+            $(".link").attr("href", "https://www.jd.com")
+
+            // 设置多个属性
+            $(".link2").attr({
+                "href": "https://www.163.com/",
+                "title": "网易"
+            })
+
+            // 回调函数
+            $(".link3").attr("href", function (i, str) {
+                console.log(i, str)
+                return "https://mail.qq.com/"
+            })
+
+
+            // 在元素的结尾插入内容(仍在元素内部)
+            $(".append-btn").click(function () {
+                $(".append-p").append("<b>追加文本</b>")
+            })
+            // 在末尾添加列表项
+            $(".append-btn-li").click(function () {
+                $("ul").append("<li>item number 4</li>")
+            })
+            // 在开头添加列表项
+            $(".append-btn-li-pre").click(function () {
+                $("ul").prepend("<li>item number 0</li>")
+            })
+
+            // 在元素之前插入内容（不在元素内）
+            $(".before-append").click(function () {
+                $(".append-box").before("<b>在前面插入了内容</b>")
+            })
+            // 在元素之后插入内容（不在元素内）
+            $(".after-append").click(function () {
+                $(".append-box").after("<b>在后面插入了内容</b>")
+            })
+
+            // 删除元素 remove 删除元素及子元素
+            $(".remove-btn-all").click(function () {
+                $(".remove-box").remove()
+            })
+
+            // 删除被选元素的子元素 empty 
+            $(".remove-btn-son").click(function () {
+                $(".remove-box").empty()
+            })
+
+            // 过滤被删除的元素
+            $(".remove-btn-del").click(function () {
+                $(".remove-box p").remove(".del")
+            })
+
+            // 添加样式
+            $(".add-blue").click(function () {
+                $(".css-box").addClass("blue")
+            })
+            $(".add-font-style").click(function () {
+                $(".css-box").addClass("important")
+            })
+            // 添加多个样式
+            $(".add-more").click(function () {
+                $(".css-box").addClass("blue important ita")
+            })
+
+            // 删除样式
+            $(".remove-css").click(function () {
+                $(".css-box").removeClass("blue important ita")
+            })
+
+            // 切换样式
+            $(".toggle-css").click(function () {
+                $(".css-box").toggleClass("blue important ita")
+            })
+
+            // 获取样式
+            $(".get-css").click(function () {
+                $(".what-css").append($(".css-box").css("background-color"))
+            })
+
+            // 设置样式
+            $(".set-css").click(function () {
+                $(".set-css-box").css("background-color", "blue")
+            })
+
+            // 设置多个样式
+            $(".set-css-more").click(function () {
+                $(".set-css-box").css({
+                    "background-color": "blue",
+                    "margin-top": "20px"
+                })
+            })
+
+            // 获取宽高
+            $(".get-w-h").click(function () {
+                $(".outer").before("<br>粉色盒子width是：" + $(".inner").width() + "，height是：" + $(".inner").height())
+                $(".outer").before("<br>粉色盒子innerWidth是：" + $(".inner").innerWidth() + "，innerheight是：" + $(".inner").innerHeight() + "，包含内边距")
+                $(".outer").before("<br>粉色盒子outerWidth是：" + $(".inner").outerWidth() + "，outerheight是：" + $(".inner").outerHeight() + "，包含内边距和边框")
+            })
+            $(".get-w-h-border-box").click(function () {
+                $(".border-box").before("<br>蓝色盒子width是：" + $(".border-box").width() + "，height是：" + $(".border-box").height())
+            })
+
+
+        })
+        // 追加更多文本
+        function appendText() {
+            var txt1 = "<p>文本。</p>"; // 使用 HTML 标签创建文本
+            var txt2 = $("<p></p>").text("文本。"); // 使用 jQuery 创建文本
+            var txt3 = document.createElement("p");
+            txt3.innerHTML = "文本。"; // 使用 DOM 创建文本 text with DOM
+            // $("body").append(txt1, txt2, txt3); // 追加新元素
+            $("body").append([txt1, txt2, txt3]); // 追加新元素
+        }
+    </script>
+    <style>
+        .blue {
+            color: blue;
+        }
+
+        .important {
+            font-weight: bold;
+            font-size: xx-large;
+        }
+
+        .ita {
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>一、JQ HTML捕获</h1>
+    <p>text() html() val()</p>
+    <p class="p1">一段文字</p>
+    <p class="p2"><b>一段文字</b></p>
+    <input class="input1" type="text" value="输入框">
+
+    <h1>二、JQ HTML设置</h1>
+    <button class="set-text">设置内容</button>
+    <button class="set-html">设置HTML内容</button>
+    <button class="set-val">设置值</button>
+    <p class="p3">点击按钮设置内容</p>
+    <p class="p4">点击按钮设置HTML内容</p>
+    <input class="input2" type="text" value="点击按钮设置输入框的值">
+    <div><a class="link" href="https://www.baidu.com">链接</a></div>
+    <div><a class="link2" href="#">链接2</a></div>
+    <div><a class="link3" href="#">链接3</a></div>
+    <ul>
+        <li>item number 1</li>
+        <li>item number 2</li>
+        <li>item number 3</li>
+    </ul>
+
+    <h1>三、添加元素</h1>
+    <button class="append-btn">点击按钮在末尾追加文本</button>
+    <button class="append-btn-li">点击按钮在末尾添加列表项</button>
+    <button class="append-btn-li-pre">点击按钮在开头添加列表项</button>
+    <p class="append-p">测试段落</p>
+
+    <button onclick="appendText()">追加更多文本</button>
+
+    <div>
+        <button class="before-append">before插入</button>
+        <button class="after-append">after插入</button>
+    </div>
+    <div class="append-box" style="background-color: skyblue; height: 50px; width: 50px; margin-top: 50px;"></div>
+
+    <h1>四、删除元素</h1>
+    <button class="remove-btn-all">删除元素及子元素</button>
+    <button class="remove-btn-son">删除元素的子元素</button>
+    <button class="remove-btn-del">删除指定元素</button>
+    <div class="remove-box" style="background-color: red; width:70px; height: 170px;">
+        <p>一个段落</p>
+        <p>一个段落</p>
+        <p class="del">等待删除</p>
+        <p class="del">等待删除</p>
+        <p class="del">等待删除</p>
+    </div>
+
+    <h1>五、CSS类</h1>
+    <button class="add-blue">添加类名:蓝色字体</button>
+    <button class="add-font-style">添加类名:重要</button>
+    <button class="add-more">添加多个样式</button>
+    <button class="remove-css">删除样式</button>
+    <button class="toggle-css">切换样式</button>
+    <div class="css-box" style="background-color: red; height: 100px; width: 100px;">123456</div>
+
+    <button class="get-css">获取样式</button>
+    <p class="what-css">123456的背景色是：</p>
+    <button class="set-css">设置样式,背景色蓝色</button>
+    <button class="set-css-more">设置多个样式,背景色蓝色,上外边距</button>
+    <div class="set-css-box" style="width: 100px; height: 100px; border: 1px solid red;"></div>
+
+    <h1>六、尺寸</h1>
+    <button class="get-w-h">获取宽高</button>
+    <div class="outer" style="height: 200px; width: 200px; border: 1px solid blue;">
+        <div class="inner"
+            style="border: 5px solid skyblue; margin: 40px; padding: 30px; height: 50px; width: 50px; background-color: pink;">
+        </div>
+    </div>
+    <button class="get-w-h-border-box">获取宽高</button>
+    <div class="border-box"
+        style="box-sizing: border-box; border: 5px solid skyblue; padding: 30px; height: 80px; width: 80px; background-color: skyblue;">
+    </div>
+
+
+
+</body>
+
+</html>

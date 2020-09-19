@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>网易注册</title>
+	<script src="jquery-3.4.1.js"></script>
+	<style>
+		@font-face {
+			font-family: 'icomoon';
+			src: url('fonts/icomoon.eot?itff4b');
+			src: url('fonts/icomoon.eot?itff4b#iefix') format('embedded-opentype'),
+				url('fonts/icomoon.ttf?itff4b') format('truetype'),
+				url('fonts/icomoon.woff?itff4b') format('woff'),
+				url('fonts/icomoon.svg?itff4b#icomoon') format('svg');
+			font-weight: normal;
+			font-style: normal;
+			font-display: block;
+		}
+
+		.icon-ok:before {
+			font-family: 'icomoon';
+			content: "\e900";
+			color: #01be00;
+		}
+
+		.icon-ban:before {
+			font-family: 'icomoon';
+			content: "\e901";
+			color: #f30;
+		}
+
+		body {
+			font: 14px "宋体";
+		}
+
+		input {
+			outline: none;
+			border: 1px solid #a4c8e0;
+		}
+
+		ul {
+			list-style-type: none;
+		}
+
+		p,
+		ul {
+			margin: 0;
+			padding: 0;
+		}
+
+		.logo {
+			width: 749px;
+			margin: 0 auto;
+		}
+
+		.box {
+			width: 749px;
+			border: 1px solid #666;
+			margin: 0 auto;
+			border-radius: 5px;
+			padding: 20px 0;
+		}
+
+		.box .reg-list {
+			padding: 0 20px;
+		}
+
+		.reg-list .reg-items {
+			padding: 3px;
+		}
+
+		.item .title {
+			text-align: right;
+			display: inline-block;
+			width: 120px;
+			height: 22px;
+			line-height: 22px;
+		}
+
+		.item .mainDomain {
+			font-size: 12px;
+			color: #808080;
+		}
+
+		.item .tip,
+		.item .warn,
+		.item .pass {
+			vertical-align: top;
+			font-size: 12px;
+			margin-left: 16px;
+		}
+
+		.item .tip {
+			border: 1px solid #ffcd00;
+			background: #ffffda;
+		}
+
+		.item .warn {
+			border: 1px solid #f30;
+			background: #fff2e5;
+		}
+
+		.item .pass {
+			border: 1px solid #01be00;
+			background: #e6fee4;
+		}
+
+		.item p {
+			height: 20px;
+			line-height: 20px;
+			padding: 0 5px;
+		}
+
+		.item p span {
+			font-size: 16px;
+			padding-right: 3px;
+			vertical-align: sub;
+		}
+
+		.item .tip.tip-username,
+		.item .warn.warn-username,
+		.item .pass.pass-username {
+			margin-left: 0;
+		}
+
+		.box .reg-button {
+			margin-left: 150px;
+			margin-top: 10px;
+			width: 141px;
+		}
+
+		.box .reg-button .btn {
+			display: block;
+			background: url('images/button.gif') no-repeat;
+			width: 100%;
+			height: 51px;
+			border: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="logo"><img src="Images/register_logo.gif" alt=""></div>
+	<div class="box">
+		<form action="" method="POST">
+			<ul class="reg-list">
+				<li class="reg-items">
+					<div class="item">
+						<span class="title">通行证用户名:</span>
+						<input class="username" type="text" name="username" value="" style="width: 130px;">
+						<span class="mainDomain">@163.com</span>
+						<div class="tip tip-username" style="display: none;">
+							<p><span class="icon-ban username-icon-ban"
+									style="display: none;"></span>1、由字母、数字、下划线、点、减号组成
+							</p>
+							<p>2、只能以数字、字母开头或结尾，且长度为4-18</p>
+						</div>
+						<div class="warn warn-username" style="display: none;">
+							<p><span class="icon-ban"></span>通行证用户名不能为空，请输入通行证用户名</p>
+						</div>
+						<div class="pass pass-username" style="display: none;">
+							<p><span class="icon-ok"></span>通行证用户名输入正确</p>
+						</div>
+					</div>
+				</li>
+				<li class="reg-items">
+					<div class="item">
+						<span class="title">登录密码:</span>
+						<input class="password" name="password" value="" type="password">
+						<div class="tip tip-password" style="display: none;">
+							<p><span class="icon-ban password-icon-ban" style="display: none;"></span>密码长度为6-16</p>
+						</div>
+						<div class="warn warn-password" style="display: none;">
+							<p><span class="icon-ban"></span>密码不能为空，请输入密码</p>
+						</div>
+						<div class="pass pass-password" style="display: none;">
+							<p><span class="icon-ok"></span>密码输入正确</p>
+						</div>
+					</div>
+				</li>
+				<li class="reg-items">
+					<div class="item">
+						<span class="title">重复登录密码:</span>
+						<input class="password-check" name="password-check" value="" type="password">
+						<div class="tip tip-password-check" style="display: none;">
+							<p style="display: inline-block">请再次输入密码</p>
+							<p style="display: none"><span class="icon-ban"></span>两次输入的密码不一致，请重新输入</p>
+						</div>
+						<div class="warn warn-password-check" style="display: none;">
+							<p><span class="icon-ban"></span>重复密码不能为空，请重复输入密码</p>
+						</div>
+
+						<div class="pass pass-password-check" style="display: none">
+							<p><span class="icon-ok"></span>两次密码输入正确</p>
+						</div>
+					</div>
+				</li>
+				<li class="reg-items">
+					<div class="item">
+						<span class="title">性别:</span>
+						<input type="radio" name="male" checked><span>男</span>
+						<input type="radio" name="female"><span>女</span>
+					</div>
+				</li>
+				<li class="reg-items">
+					<div class="item">
+						<span class="title">真实姓名:</span>
+						<input class="name" name="name" value="" type="text">
+						<div class="tip tip-name" style="display: none;">
+							<p>请输入你的真实姓名</p>
+						</div>
+						<div class="pass pass-name" style="display: none;">
+							<p><span class="icon-ok"></span>姓名输入正确</p>
+						</div>
+					</div>
+				</li>
+				<li class="reg-items">
+					<div class="item">
+						<span class="title">昵称:</span>
+						<input class="nickname" name="nickname" value="" type="text">
+						<div class="tip tip-nickname" style="display: none;">
+							<p><span class="icon-ban nickname-icon-ban"
+									style="display: none;"></span>1、包含汉字、字母、数字、下划线以及@!#$%&*特殊字符</p>
+							<p>2、长度为4-20个字符</p>
+							<p>3、一个汉字占两个字符</p>
+						</div>
+						<div class="warn warn-nickname" style="display: none;">
+							<p><span class="icon-ban"></span>昵称不能为空，请输入昵称</p>
+						</div>
+						<div class="pass pass-nickname" style="display: none;">
+							<p><span class="icon-ok"></span>昵称输入正确</p>
+						</div>
+					</div>
+				</li>
+				<li class="reg-items">
+					<div class="item">
+						<span class="title">关联手机号:</span>
+						<input class="tel" name="tel" value="" type="tel">
+						<div class="tip tip-tel" style="display: none;">
+							<p><span class="icon-ban tel-icon-ban" style="display: none;"></span>1、手机号码以13、15、18开头</p>
+							<p>2、手机号码由11位数字组成</p>
+						</div>
+						<div class="warn warn-tel" style="display: none;">
+							<p><span class="icon-ban"></span>关联手机号码不能为空，请输入关联手机号码</p>
+						</div>
+						<div class="pass pass-tel" style="display: none;">
+							<p><span class="icon-ok"></span>手机号码输入正确</p>
+						</div>
+					</div>
+				</li>
+				<li class="reg-items">
+					<div class="item">
+						<span class="title">保密邮箱:</span>
+						<input class="email" name="email" value="" type="email">
+						<div class="tip tip-email" style="display: none;">
+							<p>请输入您常用的电子邮箱</p>
+							<p><span class="icon-ban"></span>邮箱输入错误</p>
+						</div>
+						<div class="warn warn-email" style="display: none;">
+							<p><span class="icon-ban"></span>保密邮箱不能为空，请输入保密邮箱</p>
+						</div>
+						<div class="pass pass-email" style="display: none;">
+							<p><span class="icon-ok"></span>邮箱输入正确</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="reg-button">
+				<a class="btn"></a>
+			</div>
+		</form>
+	</div>
+	<script>
+		// 通行证用户名
+		$(".username").focus(function () {
+			// 移除警告色
+			$(".tip-username").removeClass("warn")
+			// 隐藏图标
+			$(".username-icon-ban").css("display", "none")
+			// 显示提示
+			$(".tip-username").css("display", "inline-block")
+			// 恢复内边距
+			$(".tip-username p:nth-child(2)").css("padding", "0 5px")
+			// 隐藏通过提示
+			$(".pass-username").css("display", "none")
+			// 隐藏警告
+			$(".warn-username").css("display", "none")
+		})
+		$(".username").blur(function () {
+			if ($(".username").val().length === 0) {
+				// 移除警告色
+				$(".tip-username").removeClass("warn")
+				// 隐藏图标
+				$(".username-icon-ban").css("display", "none")
+				// 隐藏提示
+				$(".tip-username").css("display", "none")
+				// 隐藏通过提示
+				$(".pass-username").css("display", "none")
+				return
+			}
+			if ($(".username").val().length < 4 || $(".username").val().length > 18) {
+				// 添加警告色
+				$(".tip-username").addClass("warn")
+				// 显示图标
+				$(".username-icon-ban").css("display", "inline-block")
+				// 显示提示
+				$(".tip-username").css("display", "inline-block")
+				// 隐藏通过提示
+				$(".pass-username").css("display", "none")
+				// 扩大内边距
+				$(".tip-username p:nth-child(2)").css("padding-left", "25px")
+			} else {
+				// 移除警告色
+				$(".tip-username").removeClass("warn")
+				// 隐藏图标
+				$(".username-icon-ban").css("display", "none")
+				// 隐藏提示
+				$(".tip-username").css("display", "none")
+				// 显示通过提示
+				$(".pass-username").css("display", "inline-block")
+				// 恢复内边距
+				$(".tip-username p:nth-child(2)").css("padding", "0 5px")
+			}
+		})
+
+
+		// 登录密码
+		$(".password").focus(function () {
+			// 移除警告色
+			$(".tip-password").removeClass("warn")
+			// 隐藏图标
+			$(".password-icon-ban").css("display", "none")
+			// 显示提示
+			$(".tip-password").css("display", "inline-block")
+			// 隐藏通过提示
+			$(".pass-password").css("display", "none")
+			// 隐藏警告
+			$(".warn-password").css("display", "none")
+		})
+		$(".password").blur(function () {
+			if ($(".password").val().length === 0) {
+				// 移除警告色
+				$(".tip-password").removeClass("warn")
+				// 隐藏图标
+				$(".password-icon-ban").css("display", "none")
+				// 隐藏提示
+				$(".tip-password").css("display", "none")
+				// 隐藏通过提示
+				$(".pass-password").css("display", "none")
+				return
+			}
+			if ($(".password").val().length < 6 || $(".password").val().length > 16) {
+				// 添加警告色
+				$(".tip-password").addClass("warn")
+				// 显示图标
+				$(".password-icon-ban").css("display", "inline-block")
+				// 显示提示
+				$(".tip-password").css("display", "inline-block")
+				// 隐藏通过提示
+				$(".pass-password").css("display", "none")
+			} else {
+				// 移除警告色
+				$(".tip-password").removeClass("warn")
+				// 隐藏图标
+				$(".password-icon-ban").css("display", "none")
+				// 隐藏提示
+				$(".tip-password").css("display", "none")
+				// 显示通过提示
+				$(".pass-password").css("display", "inline-block")
+			}
+		})
+
+
+		// 重复登录密码
+		$(".password-check").focus(function () {
+			// 移除警告色
+			$(".tip-password-check").removeClass("warn")
+			// 显示再次输入提示
+			$(".tip-password-check p:first").css("display", "inline-block")
+			// 隐藏不一致提示
+			$(".tip-password-check p:last").css("display", "none")
+			// 显示提示
+			$(".tip-password-check").css("display", "inline-block")
+			// 隐藏通过提示
+			$(".pass-password-check").css("display", "none")
+			// 隐藏警告
+			$(".warn-password-check").css("display", "none")
+		})
+		$(".password-check").blur(function () {
+			if ($(".password-check").val().length === 0) {
+				// 移除警告色
+				$(".tip-password-check").removeClass("warn")
+				// 隐藏提示
+				$(".tip-password-check").css("display", "none")
+				// 隐藏通过提示
+				$(".pass-password-check").css("display", "none")
+				return
+			}
+			if ($(".password").val() === $(".password-check").val()) {
+				// 移除警告色
+				$(".tip-password-check").removeClass("warn")
+				// 隐藏提示
+				$(".tip-password-check").css("display", "none")
+				// 隐藏再次输入提示
+				$(".tip-password-check p:first").css("display", "none")
+				// 隐藏不一致提示
+				$(".tip-password-check p:last").css("display", "none")
+				// 显示通过提示
+				$(".pass-password-check").css("display", "inline-block")
+			} else {
+				// 添加警告色
+				$(".tip-password-check").addClass("warn")
+				// 显示提示
+				$(".tip-password-check").css("display", "inline-block")
+				// 隐藏再次输入提示
+				$(".tip-password-check p:first").css("display", "none")
+				// 显示不一致提示
+				$(".tip-password-check p:last").css("display", "inline-block")
+				// 隐藏通过提示
+				$(".pass-password-check").css("display", "none")
+			}
+		})
+
+
+		// 真实姓名
+		$(".name").focus(function () {
+			// 显示提示
+			$(".tip-name").css("display", "inline-block")
+			// 隐藏通过提示
+			$(".pass-name").css("display", "none")
+		})
+		$(".name").blur(function () {
+			if ($(".name").val().length > 0) {
+				// 显示通过提示
+				$(".pass-name").css("display", "inline-block")
+				// 隐藏提示
+				$(".tip-name").css("display", "none")
+			} else {
+				// 隐藏提示
+				$(".tip-name").css("display", "none")
+			}
+		})
+
+		// 昵称
+		$(".nickname").focus(function () {
+			// 移除警告色
+			$(".tip-nickname").removeClass("warn")
+			// 隐藏图标
+			$(".nickname-icon-ban").css("display", "none")
+			// 显示提示
+			$(".tip-nickname").css("display", "inline-block")
+			// 恢复内边距
+			$(".tip-nickname p:nth-child(2)").css("padding", "0 5px")
+			$(".tip-nickname p:nth-child(3)").css("padding", "0 5px")
+			// 隐藏通过提示
+			$(".pass-nickname").css("display", "none")
+			// 隐藏警告
+			$(".warn-nickname").css("display", "none")
+		})
+		$(".nickname").blur(function () {
+			if ($(".nickname").val().length === 0) {
+				// 移除警告色
+				$(".tip-nickname").removeClass("warn")
+				// 隐藏图标
+				$(".nickname-icon-ban").css("display", "none")
+				// 隐藏提示
+				$(".tip-nickname").css("display", "none")
+				// 隐藏通过提示
+				$(".pass-nickname").css("display", "none")
+				return
+			}
+			if ($(".nickname").val().length < 4 || $(".nickname").val().length > 20) {
+				// 添加警告色
+				$(".tip-nickname").addClass("warn")
+				// 显示图标
+				$(".nickname-icon-ban").css("display", "inline-block")
+				// 显示提示
+				$(".tip-nickname").css("display", "inline-block")
+				// 隐藏通过提示
+				$(".pass-nickname").css("display", "none")
+				// 扩大内边距
+				$(".tip-nickname p:nth-child(2)").css("padding-left", "25px")
+				$(".tip-nickname p:nth-child(3)").css("padding-left", "25px")
+			} else {
+				// 移除警告色
+				$(".tip-nickname").removeClass("warn")
+				// 隐藏图标
+				$(".nickname-icon-ban").css("display", "none")
+				// 隐藏提示
+				$(".tip-nickname").css("display", "none")
+				// 显示通过提示
+				$(".pass-nickname").css("display", "inline-block")
+				// 恢复内边距
+				$(".tip-nickname p:nth-child(2)").css("padding", "0 5px")
+				$(".tip-nickname p:nth-child(3)").css("padding", "0 5px")
+			}
+		})
+
+
+		// 关联手机号
+		$(".tel").focus(function () {
+			// 移除警告色
+			$(".tip-tel").removeClass("warn")
+			// 隐藏图标
+			$(".tel-icon-ban").css("display", "none")
+			// 显示提示
+			$(".tip-tel").css("display", "inline-block")
+			// 恢复内边距
+			$(".tip-tel p:nth-child(2)").css("padding", "0 5px")
+			// 隐藏通过提示
+			$(".pass-tel").css("display", "none")
+			// 隐藏警告
+			$(".warn-tel").css("display", "none")
+		})
+		$(".tel").blur(function () {
+			if ($(".tel").val().length === 0) {
+				// 移除警告色
+				$(".tip-tel").removeClass("warn")
+				// 隐藏图标
+				$(".tel-icon-ban").css("display", "none")
+				// 隐藏提示
+				$(".tip-tel").css("display", "none")
+				// 隐藏通过提示
+				$(".pass-tel").css("display", "none")
+				return
+			}
+			var str =
+				/^(((13[0-9]{1})|(14[0-9]{1})|(17[0-9]{1})|(15[0-3]{1})|(15[4-9]{1})|(18[0-9]{1})|(199))+\d{8})$/
+			if (!str.test($(".tel").val())) {
+				// 添加警告色
+				$(".tip-tel").addClass("warn")
+				// 显示图标
+				$(".tel-icon-ban").css("display", "inline-block")
+				// 显示提示
+				$(".tip-tel").css("display", "inline-block")
+				// 隐藏通过提示
+				$(".pass-tel").css("display", "none")
+				// 扩大内边距
+				$(".tip-tel p:nth-child(2)").css("padding-left", "25px")
+			} else {
+				// 移除警告色
+				$(".tip-tel").removeClass("warn")
+				// 隐藏图标
+				$(".tel-icon-ban").css("display", "none")
+				// 隐藏提示
+				$(".tip-tel").css("display", "none")
+				// 显示通过提示
+				$(".pass-tel").css("display", "inline-block")
+				// 恢复内边距
+				$(".tip-tel p:nth-child(2)").css("padding", "0 5px")
+			}
+		})
+
+
+		// 保密邮箱
+		$(".email").focus(function () {
+			// 移除警告色
+			$(".tip-email").removeClass("warn")
+			// 显示再次输入提示
+			$(".tip-email p:first").css("display", "inline-block")
+			// 隐藏不一致提示
+			$(".tip-email p:last").css("display", "none")
+			// 显示提示
+			$(".tip-email").css("display", "inline-block")
+			// 隐藏通过提示
+			$(".pass-email").css("display", "none")
+			// 隐藏警告
+			$(".warn-email").css("display", "none")
+		})
+		$(".email").blur(function () {
+			if ($(".email").val().length === 0) {
+				// 移除警告色
+				$(".tip-email").removeClass("warn")
+				// 隐藏提示
+				$(".tip-email").css("display", "none")
+				// 隐藏通过提示
+				$(".pass-email").css("display", "none")
+				return
+			}
+			var str = /^[a-zA-Z0-9]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/
+			if (str.test($(".email").val())) {
+				// 移除警告色
+				$(".tip-email").removeClass("warn")
+				// 隐藏提示
+				$(".tip-email").css("display", "none")
+				// 隐藏第一个p
+				$(".tip-email p:first").css("display", "none")
+				// 隐藏第二个p
+				$(".tip-email p:last").css("display", "none")
+				// 显示通过提示
+				$(".pass-email").css("display", "inline-block")
+			} else {
+				// 添加警告色
+				$(".tip-email").addClass("warn")
+				// 显示提示
+				$(".tip-email").css("display", "inline-block")
+				// 隐藏第一个p
+				$(".tip-email p:first").css("display", "none")
+				// 显示第二个p
+				$(".tip-email p:last").css("display", "inline-block")
+				// 隐藏通过提示
+				$(".pass-email").css("display", "none")
+			}
+		})
+
+		// 注册按钮
+		$(".btn").click(function () {
+			if (!$(".username").val()) {
+				$(".warn-username").css("display", "inline-block")
+			}
+
+			if (!$(".password").val()) {
+				$(".warn-password").css("display", "inline-block")
+			}
+
+			if (!$(".password-check").val()) {
+				$(".warn-password-check").css("display", "inline-block")
+			}
+
+			if (!$(".nickname").val()) {
+				$(".warn-nickname").css("display", "inline-block")
+			}
+
+			if (!$(".tel").val()) {
+				$(".warn-tel").css("display", "inline-block")
+			}
+
+			if (!$(".email").val()) {
+				$(".warn-email").css("display", "inline-block")
+			}
+		})
+	</script>
+</body>
+
+</html>

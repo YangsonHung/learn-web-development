@@ -1,0 +1,40 @@
+{
+    "name": "download shareui-design pages",
+    "version": "1.0",
+    "manifest_version": 2,
+    "description": "下载 shareui-design-设计页面",
+    "icons": {
+        "128": "icon.png"
+    },
+    "background": {
+        "scripts": [
+            "bg.js"
+        ]
+    },
+    "browser_action": {
+        "default_icon": "icon.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://fusion.design/74436/design/*"
+            ],
+            "js": [
+                "out.js"
+            ]
+        }
+    ],
+    "options_ui": {
+        "page": "options.html",
+        "chrome_style": true
+    },
+    "permissions": [
+        "tabs",
+        "storage",
+        "pageCapture",
+        "activeTab",
+        "downloads",
+        "notifications",
+        "https://fusion.design/74436/design/*"
+    ]
+}

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的时钟</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            width: 100%
+        }
+
+        body,
+        div {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        .t2 {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(#f1f3f5 100px, #5c5b5b);
+            /* 相对定位 */
+            position: relative;
+            /* 堆叠顺序 */
+            z-index: -3;
+        }
+
+        .t3 {
+            width: 350px;
+            height: 350px;
+            background-color: #fff;
+            position: absolute;
+            left: 38%;
+            top: 28%;
+            /* 添加圆角 */
+            border-radius: 60px;
+            background-image: radial-gradient(#fff 40px, #ddecf2 210px, #d3e3e9);
+        }
+
+        .t3::before {
+            content: '';
+            width: 100%;
+            height: 100%;
+            border-radius: 60px;
+            /* 参数一表示横向偏移量 参数二表示纵向偏移量，参数三表示模糊程度，参数四表示阴影大小，参数5阴影颜色 */
+            box-shadow: 0 -4px 3px 3px #b8bdca inset;
+            z-index: 2;
+            position: absolute;
+            filter: blur(1px);
+            /* 透明度 */
+            opacity: 0.6;
+        }
+
+        .t3::after {
+            content: '';
+            width: 300px;
+            height: 18px;
+            background-color: #2a2a2b;
+            position: absolute;
+            margin-left: 25px;
+            top: 97%;
+            z-index: -1;
+            filter: blur(7px);
+        }
+
+        .t4 {
+            position: relative;
+            width: 210px;
+            height: 210px;
+            background-image: radial-gradient(#f9fdff, #d9eaf8);
+            border-radius: 50%;
+            /* 边框阴影 */
+            box-shadow: 0 15px 24px -5px #7a8fae;
+            margin: 70px;
+            z-index: 10;
+        }
+
+        .t4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 210px;
+            height: 210px;
+            border-radius: 50%;
+            box-shadow: 0 4px 4px -1px #7a8fae;
+            z-index: 9;
+        }
+
+        i {
+            font-size: 20px;
+            font-weight: bold;
+            color: #8da6d8;
+            position: absolute;
+        }
+
+        .hour3 {
+            right: 25px;
+            top: 46%;
+        }
+
+        .hour9 {
+            left: 25px;
+            top: 46%;
+        }
+
+        .hour6 {
+            bottom: 25px;
+            left: 46%;
+        }
+
+        .hour12 {
+            top: 25px;
+            left: 46%;
+        }
+
+        /*  同时选择三个id */
+        #miao,
+        #fen,
+        #shi {
+            position: absolute;
+            height: 210px;
+            width: 10px;
+            /* background-color: red; */
+            left: 50%;
+            margin-left: -5px;
+        }
+
+        #miao {
+            z-index: 23;
+        }
+
+        #fen {
+            z-index: 22;
+        }
+
+        #shi {
+            z-index: 21;
+        }
+        #shi::after{
+            content: '';
+            height: 58px;
+            width: 6px;
+            background-color: #1aa9d8;
+            /* 绝对定位 */
+            position: absolute;
+            top: 55px;
+            left:2px;
+            border-radius: 8px;
+            z-index: -1;
+        }
+        #fen::after{
+            content: '';
+            height: 75px;
+            width: 3px;
+            background-color: #31aad3;
+            /* 绝对定位 */
+            position: absolute;
+            top: 48px;
+            left:3px;
+            border-radius: 8px;
+            z-index: -1;
+        }
+        #miao::after{
+            content: '';
+            height: 85px;
+            width:1px;
+            background-color: #eb5b08;
+            /* 绝对定位 */
+            position: absolute;
+            top: 39px;
+            left:4px;
+            border-radius: 8px;
+            z-index: -1;
+        }
+        #poin{
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            box-shadow: 0 3px 8px -1px #0f4873;
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            margin-left: -8px;
+            margin-top: -8px;
+            z-index: 999;
+        }
+        #poin::before,#poin::after{
+            content: '';
+            width: 10px;
+            height: 10px;
+            background-color: #8ba3b6;
+            position: absolute;
+            border-radius: 50%;
+            z-index: 1;
+            top: 0;
+        }
+        #poin::before{
+            width: 16px;
+            height: 16px;
+        }
+        #poin::after{
+            background-color: #cee3ec;
+            left: 3px;
+            top: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='t2'>
+        <div class='t3'>
+            <div class='t4'>
+                <!-- 四个数字 -->
+                <i class="hour3">3</i>
+                <i class="hour6">6</i>
+                <i class="hour9">9</i>
+                <i class="hour12">12</i>
+                <!-- 中秒表 -->
+                <div id="miao"></div>
+                <div id="fen"></div>
+                <div id="shi"></div>
+                <div id="poin"></div>
+            </div>
+        </div>
+
+    </div>
+    <!-- script标签内部主要定义的是js代码，是一种弱类型的脚本语言，一般嵌套在html代码内，完成前端页面的动态交互效果 -->
+    <script>
+        //获取时针的标签
+        var shi = document.getElementById('shi');
+        //获取分钟的标签
+        var fen = document.getElementById('fen');
+        //获取秒钟的标签
+        var miao = document.getElementById('miao');
+
+        var clock = setInterval(function(){
+            //获取当前的时间对象
+            var nowDate = new Date();
+            //获取当前时间
+            var hour = nowDate.getHours();
+            //获取当前分钟
+            var minute = nowDate.getMinutes();
+            //获取当前秒
+            var second = nowDate.getSeconds();
+//计算角度
+            var circleHour = hour % 12 * 30
+            //把24小时指转换为12小时制
+            shi.style.transform='rotate(' +circleHour + 'deg)'
+            fen.style.transform='rotate(' +minute * 6 + 'deg)'
+            miao.style.transform='rotate(' +second * 6 + 'deg)'
+        },1000)
+    </script>
+</body>
+
+</html>

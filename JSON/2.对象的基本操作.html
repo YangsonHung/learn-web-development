@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2.访问JSON对象的值</title>
+
+</head>
+
+<body>
+    <script>
+        var JSONObject = {
+            "name": "Yangson",
+            "age": 21
+        }
+        // 使用.号访问对象的属性值
+        console.log(JSONObject.name)
+        console.log(JSONObject.age)
+        console.log("\n")
+
+
+
+        // 使用['键值']方法访问属性值
+        console.log(JSONObject["name"])
+        console.log(JSONObject["age"])
+        console.log("\n")
+
+
+        // 循环对象的属性（键）
+        for(x in JSONObject) {
+            console.log(x)
+        }
+        console.log("\n")
+
+
+        // 循环对象的属性值
+        for(x in JSONObject) {
+            console.log(JSONObject[x])
+        }
+        console.log("\n")
+
+
+        // JSON对象可以嵌套
+        var human = {
+            "name": "Bob",
+            "info": {
+                "age": 20,
+                "height": 180,
+                "sex": "male"
+            }
+        }
+        // 访问嵌套对象的属性值
+        console.log(human["info"]["age"])
+        console.log(human["info"]["height"])
+        console.log(human["info"]["sex"])
+        console.log("\n")
+        // 或者使用.和[]
+        console.log(human.info["age"])
+        console.log(human.info["height"])
+        console.log(human.info["sex"])
+        console.log("\n")
+
+        // 或者使用.和.
+        console.log(human.info.age)
+        console.log(human.info.height)
+        console.log(human.info.sex)
+        console.log("\n")
+
+        // 循环嵌套对象的属性
+        for(x in human["info"]) {
+            console.log(x)
+            // console.log(human["info"][x])
+            console.log(human["info"].x)
+        }
+        console.log("\n")
+
+
+        // 修改JSON对象的值
+        var box = {
+            "width": "20px",
+            "height": "20px",
+            "color": "blue",
+            "background": {
+                "color": "black",
+                "url": "back.png"
+            }
+        }
+        // 未修改前
+        console.log(box.width)
+        console.log(box.height)
+        console.log(box.background.color)
+        console.log(box.background.url)
+        
+        // 修改
+        box.width = "50px"
+        box.height = "50px"
+        box.color = "blue"
+        box.background.color = "white"
+        box.background.url = "my.png"
+
+
+        console.log("\n")
+        // 修改后
+        console.log(box.width)
+        console.log(box.height)
+        console.log(box.color)
+        console.log(box.background.color)
+        console.log(box.background.url)
+
+        console.log("\n")        
+        // 使用中括号修改值
+        box.background["color"] = "red"
+        console.log(box.background["color"])
+
+
+
+        console.log("\n")        
+        // 删除对象属性
+        delete box.background.color
+        console.log(box)
+        console.log(box.background.color)
+
+        // delete box.background["url"]
+        console.log(box.background["url"])
+
+
+    </script>
+</body>
+
+</html>

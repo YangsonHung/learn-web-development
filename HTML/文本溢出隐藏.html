@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文本溢出隐藏</title>
+    <style>
+        .one {
+            white-space: nowrap;
+            /* 强制文本一行显示 */
+            overflow: hidden;
+            /* 超出元素默认宽度内容隐藏 */
+            text-overflow: ellipsis;
+            /* 使用省略号表示有未显示内容 */
+        }
+
+        .more_webkit {
+            display: -webkit-box;
+            /* 将元素对象设置为弹性的伸缩盒子显示 */
+            -webkit-box-orient: vertical;
+            /* 设置伸缩盒子内对象的排列方式，垂直排列 */
+            -webkit-line-clamp: 3;
+            /* 限定块元素内文本显示的行数，2行 */
+            overflow: hidden;
+            /* 超出元素默认宽度内容隐藏 */
+            /* text-overflow: ellipsis; */
+            /* 没有出现省略号时，添加这句 */
+        }
+
+        .more {
+            height: 30px;
+            line-height: 2em;
+            overflow: hidden;
+            border: 1px solid red;
+            position: relative;
+        }
+
+        .more::after {
+            content: "...";
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            padding: 0px 0px 0px 1px;
+            background-color: red;
+        }
+
+        .eng {
+           height: 20px;
+           width: 300px;
+           border: 1px solid red;
+           word-break: break-all;
+           /* 允许拆开单词，在单词内换行 */
+           /* word-break: keep-all; */
+           /* 只在半角空格或连接字符出换行 */
+        }
+    </style>
+</head>
+
+<body>
+    <p class="one">
+        单行文本溢出隐藏显示省略号单行文本溢出隐藏显示省略号单行文本溢出隐藏显示省略号单行文本溢出隐藏显示省略号单行文本溢出隐藏显示省略号单行文本溢出隐藏显示省略号单行文本溢出隐藏显示省略号单行文本溢出隐藏显示省略号单行文本溢出隐藏显示省略号单行文本溢出隐藏显示省略号单行文本溢出隐藏显示省略号单行文本溢出隐藏显示省略号单行文本溢出隐藏显示省略号单行文本溢出隐藏显示省略号单行文本溢出隐藏显示省略号单行文本溢出隐藏显示省略号单行文本溢出隐藏显示省略号单行文本溢出隐藏显示省略号
+    </p>
+    <p class="more_webkit">
+        webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号webkit多行文本溢出隐藏显示省略号
+    </p>
+    <p class="more">
+        多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号多行文本溢出隐藏显示省略号
+    </p>
+    <p class="eng">
+        The Pennsylvania-landscape was in severe wintry garb as our car sped westover the interstate Ul The season was wrong, butI couldn't get bluebirds outof my head.  
+    </p>
+</body>
+
+</html>

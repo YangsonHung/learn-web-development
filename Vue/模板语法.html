@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>模板语法</title>
+		<style type="text/css">
+			.class1 {
+				background-color: #444;
+				color: #eee;
+			}
+
+			#list-1 {
+				color: red;
+			}
+		</style>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+
+		<div id="app">
+
+			<!-- 文本插值 -->
+			<p>{{message}}</p>
+
+			<!-- v-html 用来输出html代码 -->
+			<div v-html="message2"></div>
+
+			<!-- 使用v-bind指令 -->
+			<label for="r1">修改颜色</label><input id="r1" type="checkbox" v-model="use">
+			<br><br>
+			<!-- use的值为真时使用class1样式，为假不使用 -->
+			<div v-bind:class="{'class1': use}">v-bind:class 指令</div>
+
+			<!-- Vue完全支持JS表达式 -->
+			{{5+5}}<br>
+			{{ ok ? 'YES' : 'NO' }}<br>
+			<!-- 分割，翻转，拼接 -->
+			{{ sentence.split('').reverse().join('') }}<br>
+			<div v-bind:id=" 'list-' + id ">样式里看我</div>
+
+			<!-- v-if指令 -->
+			<p v-if="seen">Now you see me</p>
+			<!-- 不插入p元素 -->
+			<p v-if="!seen">Now you cannot see me</p>
+			<p v-if="isNotSeen">Now you cannot see me</p>
+
+			<!-- 什么是参数？ -->
+			<a v-bind:href="url">百度官网</a>
+			<!-- 冒号后面的href即为参数，也就是元素的属性 -->
+			<!-- v-bind 指令将参数 href 与表达式 url 的值绑定 -->
+
+			<!-- 什么是修饰符 -->
+			<!-- 
+				修饰符是以半角句号 . 指明的特殊后缀，
+				用于指出一个指令应该以特殊方式绑定。
+				例如，.prevent 修饰符告诉 v-on 指令对于触发的事件调用 event.preventDefault()
+			-->
+			<!-- <form v-on:submit.prevent="onSubmit"></form> -->
+
+			<!-- v-model 双向数据绑定用户输入 -->
+			<p>{{user_input}}</p>
+			<input type="text" v-model="user_input">
+			<!-- 
+				v-model 指令用来在 input、select、textarea、checkbox、radio 等表单控件元素上创建双向数据绑定，
+				根据表单上的值，自动更新绑定的元素的值。
+			-->
+
+			<!-- v-on 监听事件 -->
+			<p>{{ sentence }}</p>
+			<button v-on:click="reverseSentence">翻转字符串</button>
+
+			<!-- 过滤器使用 -->
+			<p>{{ name | capitalize }}</p>
+			<!-- 过滤器函数被用作一些常见的文本格式化中，用管道符指示 -->
+			<!-- 过滤器函数接受表达式的值作为第一个参数 -->
+			<!-- 过滤器可以串联 -->
+			<!-- {{ message | filterA | filterB }} -->
+			<!-- 可以接受参数 -->
+			<!-- {{ message | filterA('arg1', arg2) }} -->
+			<!-- 
+				message 是第一个参数，字符串 'arg1' 将传给过滤器作为第二个参数， 
+				arg2 表达式的值将被求值然后传给过滤器作为第三个参数
+			-->
+
+			<!-- 指令缩写 -->
+			<!-- v-bind的缩写 -->
+			<!-- 
+			  <a v-bind:href="url"></a>
+			  <a :href="url"></a>
+			-->
+			<!-- v-on的缩写 -->
+			<!-- 
+			   <a v-on:click="doSomething"></a>
+			   <a @click="doSomething"></a>
+			-->
+
+		</div>
+		<script>
+			new Vue({
+				el: '#app',
+				data: {
+					message: "Hello Vue.js!",
+					message2: "<h1>HelloWorld</h1>",
+					use: false,
+					ok: true,
+					sentence: "OLLEH",
+					id: 1,
+					seen: true,
+					isNotSeen: false,
+					url: "https://www.baidu.com",
+					user_input: 2233,
+					name: "yangson"
+				},
+				methods: {
+					reverseSentence: function() {
+						this.sentence = this.sentence.split('').reverse().join('')
+					}
+				},
+				filters: {
+					capitalize: function(value) {
+						if (!value) return ''
+						value = value.toString()
+						return value.charAt(0).toUpperCase() + value.slice(1)
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>循环语句</title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!-- v-for 可以绑定数据到数组来渲染一个列表 -->
+			<!-- 语法：site in sites -->
+			<!-- site 是数组元素迭代的别名，sites 是源数据数组 -->
+			<div v-for="item in me">
+				<p>姓名：{{item.name}}</p>
+				<p>性别：{{item.sex}}</p>
+				<p>年龄：{{item.age}}</p>
+			</div>
+			<div v-for="item in person">
+				<p>name: {{item.name}}</p>
+			</div>
+			<!-- v-for 渲染列表 -->
+			<ol>
+				<li v-for="item in person">
+					name: {{item.name}}
+				</li>
+			</ol>
+
+			<!-- v-for 迭代对象 -->
+			<ul>
+				<li v-for="value in object">
+					{{value}}
+				</li>
+			</ul>
+
+			<!-- v-for 提供两个参数 来迭代对象 -->
+			<ul>
+				<li v-for="(value, key) in object">
+					{{key}}:{{value}}
+				</li>
+			</ul>
+
+			<!-- v-for 提供三个参数 来迭代对象 -->
+			<!-- (value, key, index) 分别为键值，键名，索引 -->
+			<ul>
+				<li v-for="(value, key, index) in object">
+					{{index}}.{{key}}:{{value}}
+				</li>
+			</ul>
+
+			<!-- v-for 迭代一个整数 -->
+			<ul>
+				<li v-for="n in 5">
+					{{n}}
+				</li>
+			</ul>
+
+
+		</div>
+
+		<script type="text/javascript">
+			new Vue({
+				el: '#app',
+				data: {
+					me: [{
+						name: 'yangson',
+						sex: 'male',
+						age: 21
+					}],
+					person: [{
+							name: 'Alan'
+						},
+						{
+							name: 'Bob'
+						},
+						{
+							name: 'Clara'
+						}
+					],
+					object: {
+						name: '菜鸟教程',
+						url: 'https://www.runoob.com',
+						slogan: '学的不仅是技术，更是梦想！'
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片缝隙问题</title>
+    <style>
+        /* 
+        解决方法：
+        1.给img设置vertical-align:middle | top等，让图片不要和基线对齐
+        2.给img添加display:block
+        3.给img设置浮动
+        */
+        .bk2 {
+            width: 300px;
+            /* height: 200px; */
+            border: 1px solid red;
+            margin: 300px auto;
+            /* float: left; */ /* 父亲也浮动 */
+        }
+
+        .bk2 img {
+            width: 100%;
+            height: 100%;
+            /* vertical-align:middle */
+            /* display: block; */
+            /* float: left; */ /* 子浮动 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bk2">
+        <img src="pic/bk2.jpeg" />
+    </div>
+</body>
+
+</html>

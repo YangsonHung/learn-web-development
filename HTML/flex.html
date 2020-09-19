@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #main {
+            width: 800px;
+            height: 200px;
+            border: 1px solid black;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .son {
+            width: 200px;
+            height: 100%;
+        }
+
+        .son:nth-child(1) {
+            background-color: blue;
+        }
+
+        .son:nth-child(2) {
+            background-color: red;
+        }
+
+        .son:nth-child(3) {
+            background-color: green;
+        }
+
+        .son:nth-child(4) {
+            background-color: orange;
+        }
+
+        .son:nth-child(5) {
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+    </div>
+</body>
+
+</html>

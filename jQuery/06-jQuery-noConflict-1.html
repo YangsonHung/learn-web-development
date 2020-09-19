@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>06-jQuery-noConflict-1</title>
+    <script src="js/jquery-3.4.1.js"></script>
+    <script>
+        $.noConflict()
+        jQuery(document).ready(function(){
+            jQuery("button").click(function(){
+                jQuery("p").text("使用$.noConflict()方法与其他框架一起使用")
+            })
+        })
+    </script>
+</head>
+<body>
+    <p>与其他JS框架一起使用</p>
+    <button class="work">点我</button>
+</body>
+</html>

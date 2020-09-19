@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3.JSON数组</title>
+
+</head>
+
+<body>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <script>
+        var JSONObject = {
+                "name": "yangson",
+                "age": 21,
+                "info": ["height", "width", "male"]
+            },
+            x = ""
+        // 使用 for..in 循环 
+        for (var i in JSONObject.info) {
+            console.log(i, JSONObject.info[i])
+            x += JSONObject.info[i] + "<br>"
+        }
+        document.getElementById("demo").innerHTML = x
+        // 使用for循环
+        x = ""
+        for (var i = 0; i < JSONObject.info.length; i++) {
+            x += JSONObject.info[i] + "<br>"
+        }
+        document.getElementById("demo1").innerHTML = x
+
+        var myObj = {
+                "name": "网站",
+                "num": 3,
+                "sites": [{
+                        "name": "Google",
+                        "info": ["Android", "Google 搜索", "Google 翻译"]
+                    },
+                    {
+                        "name": "Runoob",
+                        "info": ["菜鸟教程", "菜鸟工具", "菜鸟微信"]
+                    },
+                    {
+                        "name": "Taobao",
+                        "info": ["淘宝", "网购"]
+                    }
+                ]
+            },
+            site = ""
+
+        for (var i in myObj.sites) {
+            site += "<h1>" + myObj.sites[i].name + "</h1>"
+            for (var j in myObj.sites[i].info) {
+                site += myObj.sites[i].info[j] += "</br>"
+            }
+        }
+
+        document.getElementById("demo2").innerHTML = site
+
+        // 修改数组的值，通过索引值
+        JSONObject.info[0] = "length"
+        console.log(JSONObject.info[0])
+
+        // 删除数组的元素
+        delete JSONObject.info[0]
+        console.log(JSONObject.info[0])
+        console.log(JSONObject.info[1])
+    </script>
+</body>
+
+</html>

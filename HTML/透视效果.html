@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>透视效果</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 300px;
+            border: 1px solid red;
+            margin: 200px auto;
+            perspective: 1000px;
+        }
+
+        div img {
+            width: 100%;
+            /* 谁做变换给谁做过度 */
+            transition: all 5s;
+            /* 解决图片底部缝隙问题 */
+            display: block;
+        }
+
+        div:hover img {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img src="pic/bk2.jpeg" />
+    </div>
+</body>
+
+</html>

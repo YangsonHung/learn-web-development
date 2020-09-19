@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>面向对象-创建对象1</title>
+</head>
+<body>
+    <script>
+        // "use strict";
+        // 构造函数
+        function Student(name) {
+            this.name = name;
+            this.hello = function() {
+                console.log('Hello, ' + this.name + '!')
+            }
+        }
+        var xiaoming = new Student("小明")
+        var xiaohong = new Student("小红")
+        // 函数不相同，不共享
+        console.log(xiaoming.hello === xiaohong.hello) //false
+        console.log(xiaoming.name)
+        xiaoming.hello()
+
+        // 验证原型
+        // 新建对象的原型指向构造函数的prototype
+        
+        console.log("验证原型")
+        console.log(Object.getPrototypeOf(xiaoming))
+        console.log(xiaoming.__proto__)
+        console.log(Student.prototype)
+        console.log(xiaoming.constructor)
+
+        console.log(xiaoming.constructor === Student.prototype.constructor)
+        console.log(xiaoming.__proto__ === Student.prototype)
+        console.log(Object.getPrototypeOf(xiaoming) === Student.prototype)
+        console.log(xiaoming instanceof Student)
+
+        // 修改构造函数，让创建的对象共享一个函数
+        function Student2(name) {
+            this.name = name
+        }
+        Student2.prototype.hello = function() {
+            console.log('Hello, ' + this.name + '!')
+        }
+        var jk = new Student2("jack")
+        var la = new Student2("Luca")
+        jk.hello()
+        la.hello()
+        // 函数相同，共享
+        console.log(jk.hello === la.hello)
+
+        // strict 模式下，不使用new将报错
+        var kt = Student2("kate")
+
+        // console.log(kt.name)
+        // 非strict模式下会创建全局变量
+        console.log(window.name)
+    </script>
+</body>
+</html>

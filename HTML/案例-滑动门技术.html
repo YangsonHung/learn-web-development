@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>滑动门技术</title>
+	<meta charset="utf-8" />
+	<style>
+		a {
+			/* 滑动门需要行内块 ，或者块然后设置左浮动 */
+			display: inline-block;
+			background: url(pic/a.png) no-repeat;
+			height: 33px;
+			padding-left: 15px;
+		}
+		span {
+			color: #fff;
+			display: inline-block;
+			height: 33px;
+			line-height: 33px;  /* 为了安全和稳定，虽说有line-height就行，但是height不要删 */
+			background: url(pic/a.png) no-repeat right;
+			padding-right: 15px;
+		}
+	</style>
+</head>
+<body>
+	<a href="#">
+		<span>首页</span>
+	</a>
+	<a href="#">
+		<span>三个字</span>
+	</a>
+	<a href="#">
+		<span>首页首页</span>
+	</a>
+	<a href="#">
+		<span>首页首页首页</span>
+	</a>
+	<a href="#">
+		<span>首页首页导航栏</span>
+	</a>
+	<a href="#">
+		<span>首页首页首页页页首首页首页首页页导航栏</span>
+	</a>
+</body>
+</html>

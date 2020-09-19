@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>垂直对齐</title>
+    <style>
+        p {
+            border: 1px solid red;
+        }
+
+        .middle img {
+            vertical-align: middle;
+        }
+
+        .top img {
+            vertical-align: top;
+        }
+
+        .bottom img {
+            vertical-align: bottom;
+        }
+
+        .text-top img {
+            vertical-align: text-top;
+        }
+
+        .text-bottom img {
+            vertical-align: text-bottom;
+        }
+    </style>
+</head>
+
+<body>
+    <p class="baseline">baseline<img src="pic/bk (1).jpg" width="300px" height="200px" />默认。元素放置在父元素的基线上</p>
+    <p class="middle">middle<img src="pic/bk (3).jpg" width="300px" height="200px" />把此元素放置在父元素的中部。</p>
+    <p class="top">top<img src="pic/bk (4).jpg" width="300px" height="200px" />把元素的顶端与行中最高元素的顶端对齐</p>
+    <p class="text-top">text-top<img src="pic/bk (6).jpg" width="300px" height="200px" />把元素的顶端与父元素字体的顶端对齐</p>
+    <p class="bottom">bottom<img src="pic/bk (5).jpg" width="300px" height="200px" />把元素的底端与行中最低的元素的底端对齐。</p>
+    <p class="text-bottom">text-bottom<img src="pic/bk.png" width="300px" height="200px" />把元素的底端与父元素字体的底端对齐。</p>
+</body>
+
+</html>

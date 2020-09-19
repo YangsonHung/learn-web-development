@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>skew</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 300px;
+            border: 1px solid red;
+            margin: 100px auto;
+            perspective: 1000px;
+        }
+
+        img {
+            width: 100%;
+            transition: all 0.5s;
+        }
+
+        div:first-child:hover img {
+            /* 指定对象的斜切扭曲(翻转)，第一个参数为x轴，第二个参数为y轴，第二个参数为空时，默认为0 */
+            transform: skew(30deg, 20deg);
+        }
+
+        div:nth-child(2):hover img {
+            /* 指定对象的x轴扭曲 */
+            transform: skewX(30deg);
+        }
+
+        div:nth-child(3):hover img {
+            /* 指定对象的y轴扭曲 */
+            transform: skewY(30deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div><img src="pic/bk5.jpg"></div>
+    <div><img src="pic/bk5.jpg"></div>
+    <div><img src="pic/bk5.jpg"></div>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>05-jQuery-AJAX</title>
+    <script src="js/jquery-3.4.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button.fix").click(function () {
+                // 等效代码：$("h1").load("file/ajax.html #content")
+                $("h1.base").load("file/ajax.html", "#content", function (responseText, statusText,
+                    xhr) {
+                    if (statusText === "success") {
+                        console.log("外部内容加载成功")
+                    } else if (statusText === "error") {
+                        console.log("Error:" + xhr.status + ":" + xhr.statusText)
+                    }
+                })
+            })
+            /**
+             * load 语法: $(selector).load(URL,data,callback);
+             * URL: 文件的地址
+             * data: 随请求一起发送的查询字符串键值对集合
+             * callback: load完成后执行的函数
+             */
+
+            /**
+             * callback 函数有三个参数
+             * responseText：返回数据
+             * statusText：状态信息
+             * xhr：XMLHttpRequest对象
+             */
+
+            /*
+            load 复用
+            $(".include").each(function () {
+                if (!!$(this).attr("file")) {
+                    var $includeObj = $(this);
+                    $(this).load($(this).attr("file"), function (responseText) {
+                        // 将返回的数据内容插入到当前标签，然后删除当前标签
+                        $includeObj.after(responseText).remove()
+                    })
+                }
+            })
+            */
+            $("button.ch").click(function () {
+                if (!!$(".include").attr("file")) {
+                    $(".include").load($(".include").attr("file"), function (responseText) {
+                        // 将返回的数据内容插入到当前标签，然后删除当前标签
+                        $(".include").after(responseText).remove()
+                    })
+                }
+            })
+
+            // get 请求
+            // get 语法 $.get(URL,callback);
+            // URL:请求的URL
+            // callback：回调函数
+
+            // 回调函数参数两个：data status
+            // data: 返回数据
+            // status：请求状态
+            $(".get").click(function () {
+                var str = "GET"
+                $.get("file/get-post.php?q=" + str, function (data, status) {
+                    console.log("data:", data)
+                    console.log("status:", status)
+                })
+            })
+
+            // post 请求
+            // post 语法 $.post(URL,data,callback);
+            // URL:请求的URL
+            // data：连同请求一起发送的数据
+            // callback：回调函数
+
+            $(".post").click(function () {
+                var str = "POST"
+                $.post("file/get-post.php?q=" + str, {name: "Alex", age: 20}, function (data, status) {
+                    console.log("data:", data)
+                    console.log("status:", status)
+                })
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <h1>一、基本使用</h1>
+    <h1 class="base">
+        使用jQuery AJAX 修改文本内容
+    </h1>
+    <div>
+        <button class="fix">修改内容</button>
+    </div>
+    <h1>二、load复用</h1>
+    <div>
+        <button class="ch">导入内容</button>
+    </div>
+    <div class="include" file="file/ajax.html">在需要导入的页面添加这个标签</div>
+
+    <h1>三、get()、post()</h1>
+    <div>
+        <div>
+            GET：从指定的资源请求数据<br>
+            POST：向指定的资源提交要处理的数据<br>
+            GET 基本上用于从服务器获得（取回）数据。GET 方法可能返回缓存数据<br>
+            POST 也可用于从服务器获取数据。不过，POST 方法不会缓存数据，并且常用于连同请求一起发送数据
+        </div>
+        <button class="get">get：控制台打印请求数据</button>
+        <button class="post">post：控制台打印请求数据</button>
+    </div>
+
+</body>
+
+</html>

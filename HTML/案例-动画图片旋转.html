@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动画图片旋转</title>
+    <style>
+        div {
+            width: 500px;
+            margin: 200px auto;
+            animation: xz 4s linear infinite;
+            background-color: red;
+        }
+
+        div img {
+            width: 100%;
+            /* 解决图片底部缝隙问题 */
+            display: block;
+        }
+
+        div:hover {
+            animation: none;
+        }
+
+        @keyframes xz {
+            from {
+                transform: rotate(0);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img src="pic/bg(1).jpg" />
+    </div>
+</body>
+
+</html>

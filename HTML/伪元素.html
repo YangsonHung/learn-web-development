@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        p::first-line {
+            color: red;
+        }
+
+        p::first-letter {
+            font-weight: bold;
+            font-size: 30px;
+        }
+
+        p.article::first-letter {
+            color: red;
+            font-size: xx-large;
+        }
+
+        p.article::first-line {
+            color: blue;
+            font-variant: small-caps;
+        }
+
+        p.article::before {
+            content: "before ";
+        }
+
+        p.article::after {
+            content: " after";
+        }
+    </style>
+</head>
+
+<body>
+    <p>this is a paragraph
+        <br />this is a paragraph
+    </p>
+    <!-- 段落的第一个字母将显示为红色，其字体大小为 xx-large。
+        第一行中的其余文本将为蓝色，并以小型大写字母显示。
+        段落中的其余文本将以默认字体大小和颜色来显示： -->
+    <p class="article">i am article</p>
+</body>
+
+</html>

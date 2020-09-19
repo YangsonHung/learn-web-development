@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>字体图标2</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .ico {
+            font-family: 'icomoon';
+        }
+    </style>
+</head>
+
+<body>
+    <p>字体图标使用方法</p>
+    <p>方法四：导入生成的style.css文件，给span元素添加已定义好的样式类名</p>
+    <span class="icon-search"></span>
+    <p>方法四更简洁，推荐使用</p>
+
+    <hr />
+    <p>输入框使用字体图标</p>
+    <p>方法二：导入style.css文件，给input设置字体为@font-face的字体，input的value值为字体图标的字符形式</p>
+    <input class="ico" type="text" value="">
+
+    <p>方法三：导入style.css文件，input设置类名为已定义的样式类名，input的value值为字体图标的字符形式</p>
+    <input type="text" class="icon-search"  value="">
+
+    <p>方法三直接导入字体图标文件和直接使用已定义的样式类名不推荐，因为已经设置了value值，又插入了before元素</p>
+    <p>推荐使用方法一或二</p>
+</body>
+
+</html>

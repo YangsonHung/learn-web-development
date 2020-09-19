@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01-jQuery事件</title>
+    <script src="js/jquery-3.4.1.js"></script>
+    <style>
+        .mouse-click {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            background: skyblue;
+        }
+
+        .mouse-move {
+            width: 200px;
+            background: silver;
+            padding: 30px
+        }
+
+        .mouse-move div {
+            background: white;
+            padding: 20px;
+        }
+
+        .hover {
+            width: 50px;
+            height: 50px;
+            background: slateblue;
+        }
+
+        .scroll-box {
+            background: pink;
+            width: 100px;
+            height: 150px;
+            overflow: scroll;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            // 鼠标事件
+            $(".click").click(function () {
+                alert("触发鼠标单击事件")
+            })
+            $(".dbclick").dblclick(function () {
+                alert("触发鼠标双击事件")
+            })
+
+            var val_enter = 0,
+                val_over = 0
+            // mouseenter不会被子级触发
+            $(".mouseenter").mouseenter(function () {
+                $(".mouseenter span").text(val_enter += 1)
+            })
+            // mouseover会被子级触发
+            $(".mouseover").mouseover(function () {
+                $(".mouseover span").text(val_over += 1)
+            })
+
+            // hover 函数参数传入两个函数
+            $(".hover.f1").hover(function () {
+                $(".hover.f1").css("background", "red")
+            }, function () {
+                $(".hover.f1").css("background", "green")
+            })
+            // hover 函数参数传入两个函数等效方法
+            $(".hover.f2").mouseover(function () {
+                $(".hover.f2").css("background", "blue")
+            }).mouseout(function () {
+                $(".hover.f2").css("background", "orange")
+            })
+            // hover 函数参数只传入一个函数，mouseover和mouseout都会执行它
+            $(".hover.f3").hover(function () {
+                $(".hover.f3").css("background", "yellow")
+            })
+            // hover 函数参数只传入一个函数等效方法，mouseover和mouseout都会执行它
+            $(".hover.f4").on("mouseover, mouseout", function () {
+                $(".hover.f4").css("background", "yellow")
+            })
+
+            // 键盘事件
+            var keypress_input_count = 0
+            $(".keypress").keypress(function (event) {
+                $(".keypress_val").text(event.which)
+                console.log("ASCII的类型：" + typeof event.which)
+                console.log("转为字符串：" + typeof String.fromCharCode(event.which) + ":" + String
+                    .fromCharCode(event.which))
+                console.log("event.key:" + event.key)
+                $(".keypress_input_count").text(keypress_input_count += 1)
+                // 按下按键时显示输入的字符串的长度，这里要+1，好像是bug
+                $(".keypress_input_length").text($(".keypress").val().length + 1)
+            })
+            var keydown_input_count = 0
+            $(".keydown").keydown(function (event) {
+                $(".keydown_val").text(event.which)
+                $(".keydown_input_count").text(keydown_input_count += 1)
+
+                $(".keydown_input_length").text($(".keydown").val().length + 1)
+            })
+            $(".keyup").keydown(function () {
+                $(".keyup").css("background", "red")
+            })
+            $(".keyup").keyup(function () {
+                $(".keyup").css("background", "blue")
+            })
+
+            var validKeys = {
+                start: 65,
+                end: 90
+            };
+            $("#keys").keypress(validKeys, function (event) {
+                var keys = event.data; //拿到validKeys对象.
+                return event.which >= keys.start && event.which <= keys.end;
+            });
+
+
+            $(window).keypress(function (event) {
+                // console.log(event)
+            })
+
+
+
+
+
+            // 表单事件
+            // 提交事件，只用于form元素
+            $(".allow-submit").submit(function () {
+                alert("提交表单")
+            })
+            $(".ban-submit").submit(function (event) {
+                event.preventDefault()
+                alert("提交表单被阻止")
+            })
+            $(".focus-blur-change").focus(function () {
+                $(".tip-focus").css("display", "inline-block").fadeOut(2000)
+                // 使用alert出现无限循环
+                // alert("输入框聚焦")
+                $(this).css("background", "blue")
+            })
+            $(".focus-blur-change").blur(function () {
+                // alert("输入框失去聚焦")
+                $(this).css("background", "red")
+            })
+            $(".focus-blur-change").change(function () {
+                alert("change事件触发")
+            })
+
+
+            // 文档窗口事件
+            var re_cnt = 0
+            $(window).resize(function () {
+                $(".re_cnt").text(re_cnt += 1)
+            })
+            var scroll_val = 0
+            $(".scroll-box").scroll(function () {
+                $(".scroll-event").text(scroll_val += 1)
+            })
+            var page_scroll_cnt = 0
+            $(window).scroll(function (event) {
+                console.log("页面滚动了" + (page_scroll_cnt += 1) + "次")
+                console.log($(document).scrollTop)
+            })
+
+        })
+    </script>
+</head>
+
+<body>
+    <!-- 鼠标事件 -->
+    <h1>click事件：</h1>
+    <div class="mouse-click click"></div>
+
+    <h1>dblclick事件：</h1>
+    <div class="mouse-click dbclick"></div>
+
+    <h1>mouseenter事件：</h1>
+    <div class="mouse-move mouseenter">
+        <div>mouseenter事件：<span></span></div>
+    </div>
+
+    <h1>mouseover事件：</h1>
+    <div class="mouse-move mouseover">
+        <div>mouseover事件：<span></span></div>
+    </div>
+
+    <h1>hover事件：</h1>
+    <p>f1</p>
+    <div class="hover f1"></div>
+    <p>f2</p>
+    <div class="hover f2"></div>
+    <p>f3</p>
+    <div class="hover f3"></div>
+    <p>f4</p>
+    <div class="hover f4"></div>
+
+
+    <!-- 键盘事件 -->
+    <h1>keypress事件：</h1>
+    <input class="keypress" type="text">
+    <p>keypress 返回按键的ASCII：<span class="keypress_val"></span></p>
+    <p>输入字符个数：<span class="keypress_input_count"></span></p>
+    <p>输入字符长度：<span class="keypress_input_length"></span></p>
+
+    <h1>keydown事件：</h1>
+    <input class="keydown" type="text">
+    <p>keydown 返回按键代码：<span class="keydown_val"></span></p>
+    <p>输入字符个数：<span class="keydown_input_count"></span></p>
+    <p>输入字符长度：<span class="keydown_input_length"></span></p>
+
+    <h1>keyup事件</h1>
+    <input class="keyup" type="text">
+
+    <h1>只能输入大写字母</h1>
+    <input id="keys" type="text">
+
+
+
+
+    <!-- 表单事件 -->
+    <h1>submit事件</h1>
+    <form class="allow-submit" action="">
+        <input type="text" value="">
+        <input type="submit" value="提交">
+    </form>
+
+    <h1>submit事件被阻止</h1>
+    <form class="ban-submit" action="">
+        <input type="text" value="">
+        <input type="submit" value="提交">
+    </form>
+
+    <h1>focus blur change事件</h1>
+    <p>focus 时为蓝色，blur 时为红色</p>
+    <p>输入文字回车或鼠标点击其他地方触发change事件</p>
+    <input class="focus-blur-change" type="text">
+    <span style="display: none;" class="tip-focus">请输入文字</span>
+
+
+    <!-- 文档窗口事件 -->
+
+    <h1>resize事件</h1>
+    <p>浏览器大小重置了<span class="re_cnt">0</span>次</p>
+
+    <h1>滚动事件</h1>
+    <div class="scroll-box">
+        滚动事件滚动事件滚动事件滚动事件滚动事件滚动事件滚动事件滚动事件滚动事件滚动事件滚动事件滚动事件滚动事件滚动事件滚动事件滚动事件滚动事件滚动事件滚动事件滚动事件滚动事件滚动事件滚动事件
+    </div>滚动了<span class="scroll-event">0</span>次
+
+    <h1>页面滚动事件在控制台中打印</h1>
+</body>
+
+</html>

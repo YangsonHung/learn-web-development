@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>空数组的比较</title>
+    <script>
+        // 数组是一个对象，对象的比较是引用的比较，不同对象的引用永不相同
+        // 两个单独的数组（对象）永不相等
+        var a = [],
+            b = []
+            console.log(a==b)
+            console.log(a===b)
+        // c的引用赋给d，所以c和d是相等的
+        var c = [],
+            d = c
+        console.log(c==d)
+        console.log(c===d)
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

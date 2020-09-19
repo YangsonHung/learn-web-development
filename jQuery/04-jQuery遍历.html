@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04-jQuery遍历</title>
+    <script src="js/jquery-3.4.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".get-fa-css").click(function () {
+                $(".father").before($(".son").parent().css("background-color"))
+            })
+
+            // 给父级设置背景色
+            $(".get-span-fa").click(function () {
+                // 打印所有祖先
+                console.log($("span").parents())
+                $("#first").parents("li").css("background-color", "red")
+            })
+
+            // 遍历.an-span 和 div 之间的所有父元素
+            $(".an-span").parentsUntil("div").css({
+                "color": "darkgreen",
+                "border": "2px solid orange"
+            })
+
+            // 选择子元素
+            console.log($(".father1").children())
+            // 选择指定子元素，传入参数
+            console.log($(".father1").children(".son1"))
+            $(".ch-bg").click(function () {
+                $(".father1").children().css("background-color", "red")
+            })
+
+            // 遍历所有后代元素
+            console.log($("div").find("*"))
+            // 遍历所有指定后代元素
+            console.log($("div").find("span"))
+
+            // 遍历所有同胞
+            $(".sibling").click(function () {
+                $(this).siblings().css("color", "blue")
+            })
+
+            // 遍历指定的同胞
+            $(".sibling-arg").click(function () {
+                $(this).siblings(".next").css("color", "green")
+            })
+
+            // 选择下一个同胞元素
+            $(".next").click(function () {
+                $(this).next().css("color", "red")
+            })
+
+            // 选择所有跟随的同胞元素
+            $(".nextAll").click(function () {
+                $(this).nextAll().css("color", "orange")
+            })
+
+            // 选择介于两个给定元素之间的所有元素
+            $(".nextUntil").click(function () {
+                $(this).nextUntil(".sibling-arg").css("color", "darkmagenta")
+            })
+
+            // 选择上一个同胞元素
+            $(".prev").click(function () {
+                $(this).prev().css("color", "yellowgreen")
+            })
+
+            // 选择前面所有同胞元素
+            $(".prevAll").click(function () {
+                $(this).prevAll().css("color", "skyblue")
+            })
+
+            // 选择介于两个给定元素之间的所有元素，向前遍历
+            $(".prevUntil").click(function () {
+                $(this).prevUntil(".nextAll").css("color", "aqua")
+            })
+
+            // 选择.gl 下第一个p元素
+            $(".gl p").first().css("color", "red")
+
+            // 选择 .gl 下最后一个p元素
+            $(".gl p").last().css("color", "green")
+
+            // 选择 .gl 下指定索引的p元素
+            $(".gl p").eq(1).css("color", "blue")
+
+            // 选择 .gl 下类名带有filter的p元素
+            $(".gl p").filter(".filter").css("color", "pink")
+            // 等效代码
+            // $(".gl p.filter").css("color", "pink")
+
+            // 选择 .gl 类名没有not的元素
+            $(".gl p").not(".not").css("color", "darkred")
+
+            // not+eq 实现反选效果，选择 .gl 下索引值不为1的p元素，设置字体大小
+            $(".gl p").not(":eq(1)").css("font-size","24px");
+
+
+
+        })
+    </script>
+    <style>
+        .an {
+            display: block;
+            border: 2px solid darkblue;
+            color: darkblue;
+            padding: 5px;
+            margin: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>一、祖先</h1>
+    <button class="get-fa-css">点击获取粉色盒子颜色</button>
+    <div class="father" style="width: 200px; height: 200px; background-color: pink;">
+        <div class="son" style="width: 50px; height: 50px; background-color: skyblue;"></div>
+    </div>
+    <button class="get-span-fa">点击设置list1的背景色</button>
+    <div class="list">
+        <ul>
+            <li><span id="first">1</span></li>
+            <li><span>2</span></li>
+            <li><span>3</span></li>
+        </ul>
+    </div>
+
+    <div class="an" style="width:500px;">div (曾祖父元素)
+        <ul class="an"> ul (祖父元素)
+            <li class="an">li (父元素)
+                <span class="an an-span">span</span>
+            </li>
+        </ul>
+    </div>
+
+    <h1>二、后代</h1>
+    <button class="ch-bg">点击更改son1的背景色</button>
+    <div class="father1" style="width: 200px; height: 200px; background-color: pink;">
+        <div class="son1" style="width: 50px; height: 50px; background-color: skyblue;">son1</div>
+    </div>
+
+    <h1>三、同胞</h1>
+    <div>
+        <p class="next">段落1：点击设置下一个段落字体颜色</p>
+        <p class="nextAll">段落2：点击设置后面所有段落字体颜色</p>
+        <p class="nextUntil">段落3：点击设置段落3到7之间字体颜色</p>
+        <p class="prev">段落4：点击设置上一个段落字体颜色</p>
+        <p class="prevAll">段落5：点击设置前面所有段落字体颜色</p>
+        <p class="sibling">段落6：点击设置其他段落字体颜色</p>
+        <p class="sibling-arg">段落7：点击设置段落1字体颜色</p>
+        <p class="prevUntil">段落8：点击设置段落8到2之间字体颜色</p>
+    </div>
+
+    <h1>四、过滤</h1>
+    <div class="gl">
+        <p class="not gl-1">过滤段落1</p>
+        <p class="not gl-2">过滤段落2</p>
+        <p class="gl-3">过滤段落3</p>
+        <p class="not filter gl-3">过滤段落4</p>
+        <p class="not filter gl-3">过滤段落5</p>
+        <p class="not gl-3">过滤段落6</p>
+    </div>
+</body>
+
+</html>

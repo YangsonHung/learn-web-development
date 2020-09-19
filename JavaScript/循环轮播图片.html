@@ -1,0 +1,84 @@
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>循环轮播图片</title>
+	<style>
+		#content_wrap {
+			background: #fff;
+			overflow: hidden;
+			border: 1px dashed #ccc;
+			width: 950px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		#content_wrap img {
+			border: 3px solid #f2f2f2;
+			width: 200px;
+		}
+
+		#contain {
+			float: left;
+			width: 400%;
+		}
+
+		#scroll_img,
+		#scrol_img_cp {
+			float: left;
+		}
+	</style>
+	<script>
+		window.onload = function () {
+			var speed = 10
+			var tab = document.getElementById("content_wrap")
+			var tab1 = document.getElementById("scroll_img")
+			var tab2 = document.getElementById("scroll_img_cp")
+			tab2.innerHTML = tab1.innerHTML
+
+			function Marquee() {
+				console.log(tab.scrollLeft, tab1.offsetWidth)
+				if (tab1.offsetWidth - tab.scrollLeft <= 0) {
+					tab.scrollLeft -= tab1.offsetWidth
+					console.log("if")
+					// clearInterval(MyMar)
+				} else {
+					console.log("else")
+					tab.scrollLeft++
+				}
+			}
+			var MyMar = setInterval(Marquee, speed)
+			tab.onmouseover = function () {
+				clearInterval(MyMar)
+			}
+			tab.onmouseout = function () {
+				MyMar = setInterval(Marquee, speed)
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<div id="content_wrap">
+		<div id="contain">
+			<div id="scroll_img">
+				<a href="#"><img src="../learn-HTML&CSS/pic/bg(1).jpg"></a>
+				<a href="#"><img src="../learn-HTML&CSS/pic/bg(2).jpg"></a>
+				<a href="#"><img src="../learn-HTML&CSS/pic/bg(3).jpg"></a>
+				<a href="#"><img src="../learn-HTML&CSS/pic/bg(4).jpg"></a>
+				<a href="#"><img src="../learn-HTML&CSS/pic/bg(5).jpg"></a>
+				<a href="#"><img src="../learn-HTML&CSS/pic/bg(6).jpg"></a>
+			</div>
+			<div id="scroll_img_cp">
+				<!-- <a href="#"><img src="../learn-HTML&CSS/pic/bg(1).jpg"></a>
+				<a href="#"><img src="../learn-HTML&CSS/pic/bg(2).jpg"></a>
+				<a href="#"><img src="../learn-HTML&CSS/pic/bg(3).jpg"></a>
+				<a href="#"><img src="../learn-HTML&CSS/pic/bg(4).jpg"></a>
+				<a href="#"><img src="../learn-HTML&CSS/pic/bg(5).jpg"></a>
+				<a href="#"><img src="../learn-HTML&CSS/pic/bg(6).jpg"></a> -->
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

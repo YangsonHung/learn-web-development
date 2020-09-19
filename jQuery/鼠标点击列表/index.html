@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>文档</title>
+    <script src="../js/jquery-3.4.1.js"></script>
+    <script>
+    $(document).ready(function() {
+        var str = ["ul li:nth-child(1)", "ul li:nth-child(2)", "ul li:nth-child(3)", "ul li:nth-child(4)", "ul li:nth-child(5)"]
+        var index = 0
+        for (var i = 0; i < 5; i++) {
+            $(str[i]).click(function(event) {
+                console.log(i)
+                $(this).parent("ul").children("li").css("background", "blue")
+                $(this).css("background", "red")
+            })
+        }
+
+        // $("li").click(function () {
+        //     $(this).parent("ul").children("li")
+        // })
+
+
+        /*
+        $(str[0]).click(function() {
+            $(this).css("background", "red")
+            $(".li-2").css("background", "blue")
+            $(".li-3").css("background", "blue")
+            $(".li-4").css("background", "blue")
+            $(".li-5").css("background", "blue")
+        })
+        $(str[1]).click(function() {
+            $(this).css("background", "red")
+            $(".li-1").css("background", "blue")
+            $(".li-3").css("background", "blue")
+            $(".li-4").css("background", "blue")
+            $(".li-5").css("background", "blue")
+        })
+        $(str[2]).click(function() {
+            $(this).css("background", "red")
+            $(".li-2").css("background", "blue")
+            $(".li-1").css("background", "blue")
+            $(".li-4").css("background", "blue")
+            $(".li-5").css("background", "blue")
+        })
+        $(str[3]).click(function() {
+            $(this).css("background", "red")
+            $(".li-2").css("background", "blue")
+            $(".li-3").css("background", "blue")
+            $(".li-1").css("background", "blue")
+            $(".li-5").css("background", "blue")
+        })
+        $(str[4]).click(function() {
+            $(this).css("background", "red")
+            $(".li-2").css("background", "blue")
+            $(".li-3").css("background", "blue")
+            $(".li-4").css("background", "blue")
+            $(".li-1").css("background", "blue")
+        })
+        */
+
+        $("div").click(function() {
+            $(this).append("<style>.box::after{background-position: 0 0}</style>")
+        })
+    })
+    </script>
+    <style>
+    ul,
+    li {
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        list-style: none;
+        width: 100px;
+        height: 100px;
+        float: left;
+        background-color: #00f;
+        margin-left: 10px;
+    }
+
+    div {
+        background: green;
+        height: 200px;
+        width: 200px;
+        position: absolute;
+        top: 140px;
+        border: 1px solid red;
+    }
+
+    .box::after {
+        content: "";
+        display: block;
+        width: 120px;
+        height: 127px;
+        position: absolute;
+        background: red url("abcd.jpg") no-repeat -121px 0;
+    }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li class="li-1"></li>
+        <li class="li-2"></li>
+        <li class="li-3"></li>
+        <li class="li-4"></li>
+        <li class="li-5"></li>
+    </ul>
+    <div class="box">
+    </div>
+</body>
+
+</html>

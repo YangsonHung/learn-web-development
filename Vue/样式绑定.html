@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>样式绑定</title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.circle1,
+			.circle2 {
+				width: 200px;
+				height: 200px;
+				margin: 0 auto;
+				border-radius: 50%;
+				background-color: red;
+			}
+
+			.circle2 {
+				background-color: blue;
+			}
+
+			.square {
+				width: 200px;
+				height: 200px;
+				margin: 0 auto;
+			}
+
+			.red-square {
+				background-color: red;
+			}
+
+			.blue-square {
+				background-color: blue;
+			}
+
+			.black-square {
+				background-color: black;
+			}
+
+			.green-square {
+				background-color: green;
+			}
+
+			.position {
+				margin: 20px auto;
+			}
+
+			.base {
+				width: 200px;
+				height: 200px;
+				border-radius: 50%;
+			}
+
+			.border {
+				border: 1px solid red;
+			}
+
+			.back {
+				background-color: black;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+
+			<!-- 动态绑定样式，就是让样式类名成为boolean类型的值，让它为真或假，为真时，样式生效，为假时，不生效。 -->
+
+			<!-- 绑定动态样式 -->
+			<!-- 一个单词的样式类名可以不加引号 -->
+			<div class="circle1" :class="{circle2: isActive}"></div>
+
+			<!-- 绑定多个动态样式 -->
+			<!-- 两个单词中间横杠的样式类名要加引号 -->
+			<div class="square" :class="{'red-square': isRed, 'blue-square': isBlue}"></div>
+
+			<!-- class绑定对象 -->
+			<div class="square" :class="clsassObject"></div>
+
+			<!-- class绑定 返回 对象 的 计算属性 -->
+			<div :class="clsassObject2"></div>
+
+
+			<!-- class绑定数组 -->
+			<div :class="[arg1, arg2]"></div>
+			<!-- class使用三元运算符表达式 -->
+			<div :class="[arg1, !isActive ? arg2 : arg3]"></div>
+			<!-- 这里样式类名要加引号 -->
+			<div :class=" isActive ? 'circle1' : '' "></div>
+
+		</div>
+		<script type="text/javascript">
+			new Vue({
+				el: '#app',
+				data: {
+					isActive: true,
+					isRed: true,
+					isBlue: true,
+					clsassObject: {
+						'black-square': true,
+						'green-square': true,
+					},
+					bgc: 'black',
+					isBlack: true,
+					isBase: false,
+					arg1: 'square',
+					arg2: 'red-square',
+					arg3: 'blue-square'
+				},
+				computed: {
+					clsassObject2: function() {
+						return {
+							position: true,
+							base: !this.isBase,
+							border: true,
+							back: this.isBlack && this.bgc === 'black'
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

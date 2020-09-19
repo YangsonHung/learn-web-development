@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>绝对定位盒子水平垂直居中2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: silver;
+        }
+
+        .main {
+            width: 200px;
+            height: 300px;
+            background-color: green;
+            position: absolute;
+            /* 绝对定位的情况下，此句代码无效 */
+            /* margin: 0 auto; */
+
+            /* 水平垂直居中 */
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main"></div>
+</body>
+
+</html>

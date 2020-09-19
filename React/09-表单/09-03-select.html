@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>09-03-select</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+    class ShopForm extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {value: "lx"};
+            this.handleChange = this.handleChange.bind(this)
+            this.handleSubmit = this.handleSubmit.bind(this)
+        }
+
+        handleChange(event) {
+            this.setState({
+                value: event.target.value
+            })
+        }
+
+        handleSubmit(event) {
+            var sel = {
+                lx: "联想",
+                dr: "戴尔",
+                hp: "惠普",
+                pg: "苹果"
+            }
+            alert("你的选择是：" + sel[this.state.value])
+            event.preventDefault();
+        }
+
+        render() {
+            return (
+                <form onSubmit={this.handleSubmit}>
+                    <label>
+                        请选择：
+                        <select value={this.state.value} onChange={this.handleChange}>
+                            <option value="lx">联想</option>
+                            <option value="dr">戴尔</option>
+                            <option value="hp">惠普</option>
+                            <option value="pg">苹果</option>
+                        </select>
+                    </label>
+                    <input type="submit" value="提交" />
+                </form>
+            );
+        }
+    }
+    ReactDOM.render(
+        <ShopForm />,
+        document.getElementById("root")
+    )
+    </script>
+</body>
+
+</html>

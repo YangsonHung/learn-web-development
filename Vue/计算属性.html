@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>计算属性</title>
+		<script src="js/vue.js" type="text/javascript" charset="UTF-8"></script>
+	</head>
+	<body>
+		<!-- 反转字符串 -->
+		<div id="app">
+			{{ message.split('').reverse().join('') }}
+			<p>原始字符串：{{ message }}</p>
+			<p>计算后反转字符串：{{ reversedMessage }}</p>
+			<!-- 计算属性本质就是函数,函数被当做一个属性值看待 -->
+
+			<!-- 
+			computed 和 methods 的区别
+			methods 可以替代 computed，效果一样，但是computed基于它的依赖缓存
+			只有相关依赖发生改变时才会重新取值。而使用 methods ，在重新渲染的时候，函数总会重新调用执行
+			
+			所以computed的性能更好，如果不希望有缓存，就是用methods
+			-->
+			<p>使用方法后反转字符串: {{ reversedMessage2() }}</p>
+			
+			
+			<!-- computed setter -->
+			<!-- 计算属性默认只有getter，setter可以自己定义 -->
+			<p>{{site}}</p>
+			
+		</div>
+		<script>
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					message: 'Yangson',
+					name: 'Google',
+					url: 'https://www.google.com'
+				},
+				// vm.reversedMessage 依赖于 vm.message
+				// 在 vm.message 发生改变时,vm.reversedMessage 也会更新
+				computed: {
+					// 计算属性的 getter
+					reversedMessage: function() {
+						// this 指向 vm 实例
+						return this.message.split('').reverse().join('')
+					}
+				},
+				methods: {
+					reversedMessage2: function() {
+						return this.message.split('').reverse().join('')
+					}
+				},
+				computed: {
+					site: {
+						// getter
+						get: function() {
+							return this.name + ' ' + this.url
+						},
+						// setter
+						set: function(newValue) {
+							var names = newValue.split(' ')
+							this.name = names[0]
+							this.url = names[names.length - 1]
+						}
+					}
+				}
+			})
+			// 将字符串赋值给 site,调用setter, vm.name 和 vm.url 会被更新
+			// 注释下面一行看效果
+			// vm.site = '菜鸟教程 https://www.runoob.com'
+			document.write('name:'+vm.name)
+			document.write('<br>')
+			document.write('url:'+vm.url)
+			
+			
+		</script>
+	</body>
+</html>

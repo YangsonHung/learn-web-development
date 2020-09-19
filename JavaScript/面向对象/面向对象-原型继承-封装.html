@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>面向对象-原型继承-封装</title>
+</head>
+
+<body>
+    <script>
+        
+        // 封装继承方法
+        function inherits(Child, Parent) {
+            var F = function () {};
+            F.prototype = Parent.prototype;
+            Child.prototype = new F();
+            Child.prototype.constructor = Child;
+        }
+
+        // 定义构造函数原型
+        function Student(props) {
+            this.name = props.name || 'Unnamed';
+        }
+
+        Student.prototype.hello = function () {
+            alert('Hello, ' + this.name + '!');
+        }
+
+        function PrimaryStudent(props) {
+            Student.call(this, props);
+            this.grade = props.grade || 1;
+        }
+
+        // 实现原型继承链:
+        inherits(PrimaryStudent, Student);
+
+        // 绑定其他方法到PrimaryStudent原型:
+        PrimaryStudent.prototype.getGrade = function () {
+            return this.grade;
+        };
+    </script>
+</body>
+
+</html>

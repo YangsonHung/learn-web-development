@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02-jQuery效果</title>
+    <script src="js/jquery-3.4.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            // 一、显示和隐藏
+            $(".hide-button").click(function () {
+                $(".hide-show").hide()
+            })
+            $(".show-button").click(function () {
+                $(".hide-show").show()
+            })
+            $(".hide-self").click(function () {
+                $(this).parents(".box").hide("slow")
+            })
+            $(".hide-speed").click(function () {
+                $(this).hide(1000)
+            })
+            // linear 缓动函数，jQuery提供linear和swing
+            $(".hide-arg-3").click(function () {
+                $(this).hide(1000, "linear", function () {
+                    alert("hide()方法已完成")
+                })
+            })
+            $(".toggle-button").click(function () {
+                $(".toggle-p").toggle()
+            })
+            var fun = function () {
+                alert("回调函数名没有括号，隐藏后执行")
+            }
+            var fun_kuohao = function () {
+                alert("回调函数名有括号，执行后隐藏")
+            }
+            $(".hide-fun").click(function () {
+                $(this).hide(1000, "linear", fun)
+            })
+            $(".hide-fun-kuohao").click(function () {
+                $(this).hide(1000, "linear", fun_kuohao())
+            })
+
+            // 淡入和淡出
+            $(".fadeIn").click(function () {
+                $(".fade1").fadeIn()
+                $(".fade2").fadeIn("slow")
+                $(".fade3").fadeIn("3000")
+            })
+
+            $(".fadeOut").click(function () {
+                $(".fade1").fadeOut()
+                $(".fade2").fadeOut("slow")
+                $(".fade3").fadeOut(3000)
+            })
+
+            $(".fadeToggle").click(function () {
+                $(".fade1").fadeToggle()
+                $(".fade2").fadeToggle("slow")
+                $(".fade3").fadeToggle(3000)
+            })
+
+            $(".fadeTo").click(function () {
+                $(".fadeTo1").fadeTo("slow", 0.15)
+                $(".fadeTo2").fadeTo("slow", 0.4)
+                $(".fadeTo3").fadeTo("slow", 0.7)
+            })
+
+            // 滑动
+            $(".slideUp").click(function () {
+                console.log(23)
+                $(".slide-box").slideUp("slow").fadeIn()
+            })
+
+            $(".slideDown").click(function () {
+                $(".slide-box").slideDown("slow")
+            })
+
+            $(".slideToggle").click(function () {
+                $(".slide-box").slideToggle("slow")
+            })
+
+            // 动画
+            $(".animate").click(function () {
+                $(".animate-box").animate({
+                    // left: '250px'
+                    // marginLeft: "200px",
+                    // opacity: "0.3",
+                    // height: "+=100px",
+                    // width: 'toggle',
+                    height: "300px",
+                    width: "300px",
+                    opacity: "0.2"
+                })
+                // 动画队列
+                $(".animate-box").animate({
+                    height: "200px",
+                    width: "200px",
+                    opacity: "0.5"
+                })
+
+                $(".animate-box").animate({
+                    height: "100px",
+                    width: "100px",
+                    opacity: "0.9"
+                })
+            })
+
+            // 停止动画
+            $(".start").click(function () {
+                $(".stop-anim").slideDown(5000,function(){
+                    // alert(1324)
+                })
+                $(".stop-anim").animate({
+                    marginLeft: "100px"
+                }, 3000)
+                $(".stop-anim").animate({
+                    height: "100px",
+                    marginLeft: "50px",
+                    opacity: "0.3"
+                }, 3000)
+            })
+            // 不带参数
+            $(".stop1").click(function () {
+                $(".stop-anim").stop()
+            })
+            // 带一个参数，清除动画队列，会停止所有动画
+            $(".stop2").click(function () {
+                // console.log(123)
+                $(".stop-anim").stop(true)
+            })
+            // 带两个参数，清除动画队列，会停止所有动画，并且完成当前被停止的动画
+            $(".stop3").click(function () {
+                // console.log(456)
+                $(".stop-anim").stop(true, true)
+
+                // 停止所有动画并完成所有被停止的动画
+                // $(".stop-anim").stop(false, true)
+                // $(".stop-anim").stop(false, true)
+                // $(".stop-anim").stop(false, true)
+            })
+
+            // 链接 把动作方法连接在一起
+            $(".chaining").click(function(){
+                $(".chaining-test").css("color", "red").slideUp("fast").slideDown("slow")
+            })
+
+
+        })
+    </script>
+</head>
+
+<body style="height: 3000px;">
+    <h1>一、隐藏和显示：</h1>
+    <h2>1、没有参数的隐藏和显示</h2>
+    <p class="hide-show">点击按钮查看效果</p>
+    <button class="hide-button">隐藏</button>
+    <button class="show-button">显示</button>
+
+    <h2>2、hide参数为slow：</h2>
+    <div class="box" style="margin-top: 10px; width: 400px; height: 100px; background: slateblue;">
+        <button class="hide-self">点我隐藏</button>
+    </div>
+
+    <h2>3、hide参数为1000</h2>
+    <p class="hide-speed">点我隐藏</p>
+
+    <h2>4、hide带三个参数</h2>
+    <p class="hide-arg-3">点我隐藏</p>
+
+    <h2>5、使用toggle来切换hide()和show()</h2>
+    <p class="toggle-p">点击按钮隐藏</p>
+    <button class="toggle-button">按钮</button>
+
+    <h2>6、回调函数可以函数名或者匿名函数，函数名可以加括号或不加。
+        <br>加括号的函数名会立刻执行函数，不加括号会等到显示/隐藏后才执行</h2>
+    <p class="hide-fun">不加括号的函数名，点击查看效果</p>
+    <p class="hide-fun-kuohao">加括号的函数名，点击查看效果</p>
+
+
+    <h1>二、淡入和淡出：</h1>
+    <button class="fadeIn">淡入</button>
+    <button class="fadeOut">淡出</button>
+    <button class="fadeToggle">转换</button>
+    <div class="fade-box" style="width: 50px; height: 150px; border: 1px solid black;">
+        <div class="fade1" style="display: none; width: 50px; height: 50px; background-color: red;"></div>
+        <div class="fade2" style="display: none; width: 50px; height: 50px; background-color: blue;"></div>
+        <div class="fade3" style="display: none; width: 50px; height: 50px; background-color: green;"></div>
+    </div>
+    <button class="fadeTo">渐变</button>
+    <div class="fadeTo1" style="width: 50px; height: 50px; background-color: red;"></div>
+    <div class="fadeTo2" style="width: 50px; height: 50px; background-color: blue;"></div>
+    <div class="fadeTo3" style="width: 50px; height: 50px; background-color: green;"></div>
+
+    <h1>三、滑动</h1>
+    <button class="slideUp">上滑</button>
+    <button class="slideDown">下滑</button>
+    <button class="slideToggle">切换</button>
+    <div class="" style="width: 506px; height: 206px; border: 1px solid red;">
+        <div class="slide-box" style="background: greenyellow; width: 500px; height: 200px; border: 3px solid green;">
+        </div>
+    </div>
+
+    <h1>四、动画</h1>
+    <button class="animate">动画</button>
+    <div class="" style="position: relative; width: 200px; height: 200px; border: 1px solid red;">
+        <div class="animate-box" style="width: 100px; height: 100px; background: red; position: absolute;"></div>
+    </div>
+
+    <h1>五、停止动画</h1>
+    <button class="start">开始</button>
+    <button class="stop1">停止</button>
+    <button class="stop2">停止所有</button>
+    <button class="stop3">停止所有，完成当前动画</button>
+    <div style="width: 400px; height: 200px; background-color: silver;">
+        <div class="stop-anim" style="display:none; width: 400px; height: 200px; background-color: green;"></div>
+    </div>
+
+
+    <h1>六、链接</h1>
+    <button class="chaining">链接</button>
+    <p class="chaining-test">菜鸟教程</p>
+
+
+</body>
+
+</html>

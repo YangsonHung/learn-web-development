@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>水平居中</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        .box1,
+        .box3,
+        .box5,
+        .box7 {
+            width: 300px;
+            height: 300px;
+            background: blue;
+            margin: 10px
+        }
+
+        .box2,
+        .box4,
+        .box6,
+        .box8 {
+            width: 100px;
+            height: 100px;
+            background: red
+        }
+
+        .box2 {
+            margin: 0 auto
+        }
+
+        .box4 {
+            margin-left: 100px
+        }
+
+        .box5 {
+            position: relative
+        }
+
+        .box6 {
+            position: absolute;
+            left: 50%;
+            margin-left: -50px
+        }
+
+        /* .box6 {position: absolute; left: -50px; margin-left: 150px} */
+        .box7 {
+            text-align: center
+        }
+
+        .box8 {
+            display: inline-block
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 方法一：margin: 0 auto -->
+    <div class="box1">
+        <div class="box2"></div>
+    </div>
+
+    <!-- 方法二：手动计算父盒子和子盒子的宽度差，(父盒子宽度-子盒子宽度)/2 -->
+    <div class="box3">
+        <div class="box4"></div>
+    </div>
+
+    <!-- 方法二：子盒子使用绝对定位，先右移50%(父盒子宽度的50%)，再左移自己宽度的一半(负值) -->
+    <!-- 或者先左移自己宽度的一半(负值)，再右移父盒子的宽度的一半 -->
+    <!-- 先写left，再写margin-left -->
+    <div class="box5">
+        <div class="box6"></div>
+    </div>
+
+    <!-- 方法二：子盒子转为行内块，然后设置父盒子文本居中 -->
+    <div class="box7">
+        <div class="box8"></div>
+    </div>
+</body>
+
+</html>

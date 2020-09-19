@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>scale</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 300px;
+            border: 1px solid red;
+            margin: 100px auto;
+            perspective: 1000px;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+            transition: all 0.5s;
+        }
+
+        div:first-child:hover img {
+            /* 指定对象的2D缩放，第一个参数为x轴，第二个参数为y轴，第二个参数空，默认取第一个的值 */
+            /* 将宽度转换为原来的3倍，高度转换为原来的2倍 */
+            transform: scale(3, 2);
+        }
+
+        div:nth-child(2):hover img {
+            /* 指定对象的x轴缩放 */
+            transform: scaleX(2);
+        }
+
+        div:nth-child(3):hover img {
+            /* 指定对象的y轴缩放 */
+            transform: scaleY(2);
+        }
+
+        div:nth-child(4):hover img {
+            /* 指定对象的z轴缩放 */
+            transform: scaleZ(2);
+        }
+
+        div:nth-child(5):hover img {
+            /* 指定对象的3D缩放,参数分别为x,y,z，参数不能省略 */
+            transform: scale3d(2, 1.5, 2);
+        }
+    </style>
+</head>
+
+<body>
+    <div><img src="pic/bg(1).jpg"></div>
+    <div><img src="pic/bg(1).jpg"></div>
+    <div><img src="pic/bg(1).jpg"></div>
+    <div><img src="pic/bg(1).jpg"></div>
+    <div><img src="pic/bg(1).jpg"></div>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BFC自适应盒子</title>
+    <style>
+        .father {
+            width: 600px;
+            height: 300px;
+            border: 1px solid red;
+        }
+
+        .box {
+            width: 300px;
+            height: 100px;
+            background-color: skyblue;
+            float: left;
+        }
+
+        .txt {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="father">
+        <div class="box"></div>
+        <div class="txt">1BFC盒子不会与浮动盒子有交集BFC盒子不会与浮动盒子有交集BFC盒子不会与浮动盒子有交集BFC盒子不会与浮动盒子有交集BFC盒子不会与浮动盒子有交集BFC盒子不会与浮动盒子有交集0
+        </div>
+    </div>
+</body>
+
+</html>

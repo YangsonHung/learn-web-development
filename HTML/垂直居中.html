@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>垂直居中</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        .box1,
+        .box3,
+        .box5 {
+            width: 300px;
+            height: 300px;
+            background: blue;
+            margin: 10px
+        }
+
+        .box2,
+        .box4,
+        .box6 {
+            width: 100px;
+            height: 100px;
+            background: red
+        }
+
+        .box1 {
+            position: relative
+        }
+
+        .box2 {
+            position: absolute;
+            top: 50%;
+            margin-top: -50px
+        }
+
+        /* .box2 {position: absolute; top: -50px; margin-top: 150px} */
+        .box3 {
+            display: table-cell;
+            vertical-align: middle
+        }
+
+        /* 使用方法三要处理下垂直外边距合并的问题 */
+        .box5 {
+            overflow: hidden
+        }
+
+        .box6 {
+            margin-top: 100px
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 方法一：子盒子使用绝对定位，先下移50%(父盒子高度的50%)，在上移自己高度的一半(负值) -->
+    <!-- 或者先上移自己高度的一半(负值)，再下移父盒子高度的一半 -->
+    <!-- 先写top，再写margin-top -->
+    <div class="box1">
+        <div class="box2"></div>
+    </div>
+
+    <!-- 方法二：父盒子转换为表格单元格，表格单元格是行框，再设置行框内元素垂直对齐方式为居中 -->
+    <div class="box3">
+        <div class="box4"></div>
+    </div>
+
+    <!-- 方法三：手动计算父盒子和子盒子的高度差，(父盒子高度-子盒子高度)/2 -->
+    <!-- 方法三会有问题，因为嵌套元素会发生垂直外边距合并，要用这这种方法，需要解决外边距合并的问题 -->
+    <div class="box5">
+        <div class="box6"></div>
+    </div>
+</body>
+
+</html>

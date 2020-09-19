@@ -1,0 +1,36 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./原型继承.js"></script>
+</head>
+<body>
+    <script>
+        var mouse = new Mouse({
+            key: 12
+        })
+        mouse.print({
+            name: 'mouse',
+            age: 20,
+            success: res => {
+                console.log(res)
+            },
+            fail: err => {
+                console.log(err)
+            }
+        })
+        mouse.print({
+            name: 'mouse',
+            age: 18,
+            success: res => {
+                console.log(res)
+            },
+            fail: err => {
+                console.log(err)
+            }
+        })
+
+
+    </script>
+</body>
+</html>

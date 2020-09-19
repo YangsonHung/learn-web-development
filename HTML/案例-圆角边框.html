@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>案例-圆角边框</title>
+    <style>
+        body {
+            background-color: silver;
+        }
+        div {
+            margin-top: 10px;
+            width: 200px;
+            height: 200px;
+        }
+
+        div:nth-child(1) {
+            /* 提供一个参数，使用百分比 */
+            border-radius: 50%;
+            background-color: black;
+        }
+
+        div:nth-child(2) {
+            /* 提供一个参数，使用长度值，四个圆角值相同 */
+            border-radius: 100px;
+            background-color: red;
+        }
+
+        div:nth-child(3) {
+            /* 提供两个参数，第一个值为左上角与右下角，第二个值右上角与左下角 */
+            border-radius: 50px 100px;
+            background-color: orange;
+        }
+
+        div:nth-child(4) {
+            /* 提供三个参数，第一个值为左上角，第二个值为右上角与左下角，第三个值为右下角 */
+            border-radius: 100px 50px 20px;
+            background-color: yellow;
+        }
+
+        div:nth-child(5) {
+            /* 提供四个参数，第一个值为左上角，第二个值为右上角，第三个值为右下角，第四个值为左下角 */
+            border-radius: 100px 20px 50px 80px;
+            background-color: green;
+        }
+
+        div:nth-child(6) {
+            /* 使用四个独立属性 */
+            /* border-radius 为简写属性，它的四个独立属性，按照顺时针顺序
+            左上角：border-top-left-radius
+            右上角：border-top-right-radius
+            右下角：border-bottom-right-radius
+            左下角：border-bottom-left-radius */
+            border-top-left-radius: 10px;
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 50px;
+            border-bottom-left-radius: 100px;
+            background-color: blue;
+        }
+
+        div:nth-child(7) {
+            /* 
+                border-radius 提供两个参数，用"/"分割
+                第一个值表示水平半径或半轴，第二个值表示垂直半径或半轴
+                第二个值如果未提供，复制第一个的值
+            */
+            /* 四个圆角的水平半径都为100px，垂直半径都为50px */
+            border-radius: 100px/50px;
+            background-color: indigo;
+        }
+
+        div:nth-child(8) {
+            /* 
+                左上角和右下角的水平半径为100px，垂直半径为50px
+                右上角和左下角的水平半径为50px，垂直半径为50px
+            */
+            border-radius: 100px 50px/50px 50px;
+            background-color: purple;
+        }
+
+        div:nth-child(9) {
+            /* 
+                左上角水平半径为100px，垂直半径为40px
+                右上角和左下角的水平半径为50px，垂直半径为50px
+                右下角水平半径为20px，垂直半径为50px
+            */
+            border-radius: 100px 50px 20px/40px 50px 50px;
+            background-color: white;
+        }
+
+        div:nth-child(10) {
+            /* 
+                左上角的水平半径为100px，垂直半径为80px
+                右上角的水平半径为70px，垂直半径为40px
+                右下角的水平半径为100px，垂直半径为100px
+                左下的水平半径为20px，垂直半径为50px 
+            */
+            border-radius: 100px 70px 100px 20px/80px 40px 100px 50px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>10</div>
+</body>
+
+</html>

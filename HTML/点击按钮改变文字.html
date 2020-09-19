@@ -1,0 +1,19 @@
+<html>  
+    <head>
+        <title>DOM-点击按钮改变文字</title>
+        <script type="text/javascript">  
+            document.addEventListener("DOMContentLoaded",function () {  
+                document.getElementById("spana").innerText="456"  
+            })  
+            function changetextvalue () {  
+                document.getElementById("spana").innerText="789"  
+            }  
+        </script>  
+    </head>  
+    <body>  
+        <span id="spana">123</span>  
+        <button type="button" onclick="changetextvalue()">修改为789</button>  
+
+    </body>  
+
+</html>  

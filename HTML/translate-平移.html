@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>translate</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 300px;
+            border: 1px solid red;
+            margin: 100px;
+            perspective: 1000px;
+        }
+
+        img {
+            width: 100%;
+            /* 图片底部与边框的缝隙 */
+            display: block;
+            transition: all 1s;
+        }
+
+        div:first-child:hover img {
+            /* 指定对象的2D平移，第一个参数为x轴，第二个参数为y轴，第二个参数为空，默认为0*/
+            transform: translate(50px, 50px);
+        }
+
+        div:nth-child(2):hover img {
+            /* 指定对象的x轴平移 */
+            transform: translateX(50px);
+        }
+
+        div:nth-child(3):hover img {
+            /* 指定对象的y轴平移 */
+            transform: translateY(50%);
+        }
+
+        div:nth-child(4):hover img {
+            /* 指定对象的z轴平移 */
+            transform: translateZ(50px);
+        }
+
+        div:nth-child(5):hover img {
+            /* 指定对象的3D位移，参数分别为x,y,z轴位移值，不能省略 */
+            transform: translate3d(30px, 40px, 100px);
+        }
+    </style>
+</head>
+
+<body>
+    <div><img src="pic/bk2.jpeg"></div>
+    <div><img src="pic/bk2.jpeg"></div>
+    <div><img src="pic/bk2.jpeg"></div>
+    <div><img src="pic/bk2.jpeg"></div>
+    <div><img src="pic/bk2.jpeg"></div>
+</body>
+
+</html>

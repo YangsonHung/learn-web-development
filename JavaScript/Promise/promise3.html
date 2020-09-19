@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			function ajax(URL) {
+				return new Promise(function (resolve, reject) {
+					var req = new XMLHttpRequest();
+					req.open('GET', URL, true);
+					req.onload = function () {
+						if (req.status === 200) {
+							resolve(req.responseText);
+						} else {
+							reject(new Error(req.statusText));
+						}
+					};
+					req.onerror = function () {
+						reject(new Error(req.statusText));
+					};
+					req.send();
+				});
+			}
+			var URL = '/try/ajax/testpromise.php';
+			ajax(URL)
+				.then(function onFulfilled(value) {
+					document.write('内容是：' + value);
+				})
+				.catch(function onRejected(error) {
+					document.write('错误：' + error);
+				});
+		</script>
+	</body>
+</html>

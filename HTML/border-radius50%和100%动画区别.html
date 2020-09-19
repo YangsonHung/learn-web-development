@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>border-radius50%和100%动画区别</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+            transition: border-radius 3s;
+        }
+
+        .wrap {
+            width: 100px;
+            height: 250px;
+            border: 1px solid red;
+            cursor: pointer;
+        }
+
+        .box1 .half {
+            border-radius: 50%;
+            background: #000;
+        }
+
+        .box1 .full {
+            border-radius: 100%;
+            background: #f00;
+        }
+
+        .box1:hover div {
+            border-radius: 0;
+        }
+
+        .box2 .half {
+            border-radius: 0;
+            background: #000;
+        }
+
+        .box2 .full {
+            border-radius: 0;
+            background: #f00;
+        }
+
+        .box2:hover .half {
+            border-radius: 50%;
+        }
+
+        .box2:hover .full {
+            border-radius: 100%
+        }
+    </style>
+</head>
+
+<body>
+    <div class='wrap box1'>
+        <div class="half"></div>
+        <div class="full"></div>
+    </div>
+
+    <div class='wrap box2'>
+        <div class="half"></div>
+        <div class="full"></div>
+    </div>
+    <p>将鼠标移到红框内</p>
+</body>
+
+</html>

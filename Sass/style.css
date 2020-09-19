@@ -1,0 +1,27 @@
+a {
+  color: blue;
+}
+
+.button, button {
+  color: red;
+}
+
+.box1 a, .box2 a {
+  color: red;
+}
+
+p + .box4 {
+  color: green;
+}
+
+.box4 ~ div {
+  font-weight: 700;
+}
+
+.box4 + .para {
+  color: yellow;
+}
+
+.nav + .bar {
+  color: pink;
+}

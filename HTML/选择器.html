@@ -1,0 +1,161 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /*元素选择器，又称类型选择器*/
+        html {
+            color: black;
+        }
+
+        h1 {
+            font: 28px Verdana;
+            color: blue;
+            background: red;
+        }
+
+        /*选择器分组*/
+        h2,
+        p {
+            color: green;
+        }
+
+        /*通配符选择器*/
+        /* * {
+            color: red;
+        } */
+        /* 元素选择器结合类选择器, 交集选择器 */
+        h4.text {
+            color: red;
+            font: 30px;
+            background: blue;
+        }
+
+        /* 多类选择器 */
+        .you.he {
+            background: black;
+            color: white;
+            font-size: 30px;
+        }
+
+        /* id选择器 */
+        #divdemo {
+            color: blue;
+            font-weight: bold;
+        }
+
+        /* 属性选择器 */
+        [title] {
+            color: red;
+            margin-top: 30px;
+            /* 所有的title都生效 */
+        }
+
+        /* 带有值的属性 */
+        [title="world"] {
+            color: blue;
+            font: 30px;
+        }
+
+        /* 调换上面的title，前者覆盖后者 */
+
+        /* 属性选择器 只对有href属性的a使用*/
+        /* 属性选择器可以只对具有某属性的某元素生效，同
+        元素但是没有这个属性的无法生效*/
+        a[href] {
+            color: red;
+        }
+        /* 多属性选择 */
+        a[title][href] {
+            color: blue;
+        }
+
+        /* 根据具体的属性值选择 */
+        a[title="hao123"][href="https://www.hao123.com"] {
+            color: red;
+            font: 30px;
+        }
+        /* 包含p1的值 */
+        p[class~=p1] {
+            color: red;
+        }
+        /* 等于cn或cn开头的元素 */
+        [lang|="cn"] {
+            color: red;
+        }
+
+        /* 后代选择器 */
+        .div1 .div2 {
+            color: blue;
+        }
+
+        /* 子元素选择器 */
+        div>span {
+            color: red;
+        }
+        /* 相邻兄弟选择器 */
+        h1 + p {
+            color: silver;
+        }
+        /* 相邻兄弟选择器：三兄弟选中二和三，一不受影响*/
+        li + li {
+            font-weight: bold;
+            font-size: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>元素选择器</h1>
+    <h2>h3选择器分组</h2>
+    <p>p选择器分组</p>
+    <h4 class="text">元素选择器结合类选择器</h4>
+    <div class="you he she">多类选择器</div>
+    <div id="divdemo">id选择器</div>
+    <div title="hello">属性选择器</div>
+    <div title="world">属性选择器，针对值</div>
+    <a href="http://w3school.com.cn">W3School</a>
+    <a title="baidu.com" href="https://www.baidu.com">百度</a>
+    <a title="hao123" href="https://www.hao123.com">hao123</a>
+    <p class="p1 p2">~属性的选择器</p>
+    <p lang="cn">中文</p>
+    <h4 lang="cn">中文</h4>
+
+    <div class="div1">div1
+        <div class="div2">div2
+            <div class="div3">div3</div>
+        </div>
+    </div>
+    <div>
+        <span>
+            span显示红色
+        </span>
+    </div>
+    <div>
+        <p>
+            <span>
+                span不显示红色，不是临近的
+            </span>
+        </p>
+    </div>
+
+    <div>
+        <h1>相邻兄弟选择器</h1>
+        <p>相邻兄弟选择器</p>
+        <p>相邻兄弟选择器</p>
+        <ul>
+            <li>列表项1</li>
+            <li>列表项2</li>
+            <li>列表项3</li>
+        </ul>
+    </div>
+    <div class="font13"></div>
+    <div class="font13"></div>
+    <div class="font12"></div>
+</body>
+
+</html>

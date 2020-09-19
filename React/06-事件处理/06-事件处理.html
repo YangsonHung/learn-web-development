@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>06-事件处理</title>
+</head>
+
+<body>
+	<div id="root"></div>
+	<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+	<script type="text/babel">
+		class Toggle extends React.Component {
+			constructor(props) {
+				super(props);
+				this.state = { isToggleOn: true };
+
+				// 为了在回调中使用 `this`，这个绑定是必不可少的
+				this.handleClick = this.handleClick.bind(this);
+			}
+
+			handleClick(e) {
+				console.log(e);
+				console.log('===========',this.state.isToggleOn)
+				this.setState(state => ({
+					isToggleOn: !state.isToggleOn
+				}));
+			}
+			// 不使用bind方法的解决方式，使用public class fields语法，实验性语法
+			// Create React App 默认启用此方式
+			/*
+			handleClick = () => {
+				this.setState(state => ({
+					isToggleOn: !state.isToggleOn
+				}));
+			}
+			*/
+
+			render() {
+				console.log('--------------',this.state.isToggleOn)
+				return (
+					// 不使用bind的解决方式2：onClick={(e) => this.handleClick(e)}
+				
+					// 传递参数的方式：
+					// this.handleClick.bind(this, 1)
+					// (e) => this.handleClick(1, e)
+					<button onClick={this.handleClick}>
+						{this.state.isToggleOn ? 'ON' : 'OFF'}
+					</button>
+				);
+			}
+		}
+
+		ReactDOM.render(
+			<Toggle />,
+			document.getElementById('root')
+		);
+	</script>
+</body>
+
+</html>

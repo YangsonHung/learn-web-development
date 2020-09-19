@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>07-05-阻止渲染</title>
+    <style>
+        * {
+            font-family: sans-serif;
+            margin: 0;
+        }
+
+        .warning {
+            background-color: red;
+            color: white;
+            line-height: 30px;
+            text-align: center;
+            padding: 10px;
+        }
+
+        button {
+            height: 40px;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+    // 定义函数组件 警告条
+    function WarningBanner(props) {
+        if(!props.showWarning) {
+            return null;
+        }
+        return (
+            <div className="warning">Warning!</div>
+        )
+    }
+    // 定义class组件 page
+    class Page extends React.Component {
+        // 定义构造函数
+        constructor(props) {
+            super(props)
+            this.handleClick = this.handleClick.bind(this)
+            this.state = {
+                showWarning: true
+            }
+        }
+        // 定义按钮点击事件
+        handleClick() {
+            this.setState(state => ({
+                showWarning: !state.showWarning
+            }))
+        }
+        // 重写渲染方法
+        render() {
+            return (
+                <div>
+                    <WarningBanner showWarning={this.state.showWarning} />
+                    <button onClick={this.handleClick}>
+                        {this.state.showWarning ? 'Hide' : 'Show'}
+                    </button>
+                </div>
+            );
+        }
+    }
+    ReactDOM.render(
+        <Page />,
+        document.getElementById("root")
+    )
+    </script>
+</body>
+
+</html>

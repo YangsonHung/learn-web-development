@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>rotate</title>
+    <style>
+        div {
+            width: 300px;
+            margin: 50px;
+            border: 1px solid red;
+            /* 指定透视距离 */
+            perspective: 1000px;
+        }
+
+        div img {
+            width: 100%;
+            height: 100%;
+            /* 添加过渡效果 */
+            transition: all 0.5s;
+        }
+
+        div:first-child:hover img {
+            /* 指定对象的2D旋转，x轴和y轴所在平面，即沿着z轴 */
+            transform: rotate(90deg);
+        }
+
+        div:nth-child(2):hover img {
+            /* 指定对象在X轴的旋转角度 */
+            transform: rotateX(45deg);
+        }
+
+        div:nth-child(3):hover img {
+            /* 指定对象在Y轴的旋转角度 */
+            transform: rotateY(45deg);
+        }
+
+        div:nth-child(4):hover img {
+            /* 指定对象在Z轴的旋转角度 */
+            transform: rotateZ(45deg);
+        }
+
+        div:nth-child(5):hover img {
+            /* 指定对象的3D旋转角度，参数分别为x,y,z表示旋转方向,第四个参数表示旋转角度，参数不能省略 */
+            transform: rotate3d(1.0, 2.0, 3.0, 45deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div><img src="pic/bk.png" /></div>
+    <div><img src="pic/bk.png" /></div>
+    <div><img src="pic/bk.png" /></div>
+    <div><img src="pic/bk.png" /></div>
+    <div><img src="pic/bk.png" /></div>
+</body>
+
+</html>

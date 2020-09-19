@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>04-组合组件</title>
+    </head>
+
+    <body>
+        <div id="root"></div>
+        <div id="app"></div>
+
+        <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+        <script type="text/babel">
+            // 使用函数方式定义组件
+            function Welcome(props) {
+                return <h1>Hello, {props.name}</h1>;
+            }
+            // 使用ES6的class定义组件，与函数定义方式是等效的
+            /*
+            class Welcome extends React.Component {
+                render() {
+                    return <h1>Hello, {this.props.name}</h1>
+                }
+            }
+            */
+            // 声明变量为自定义的组件
+            const element = <Welcome name="Jack" />;
+            ReactDOM.render(element, document.getElementById("root"));
+            // 组合组件
+            function App() {
+                return (
+                    <div>
+                        <Welcome name="Alexa" />
+                        <Welcome name="Klaus" />
+                        <Welcome name="Oscra" />
+                    </div>
+                );
+            }
+            ReactDOM.render(<App />, document.getElementById("app"));
+        </script>
+    </body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>QQ注册</title>
+	<script src="js/jquery-3.4.1.js"></script>
+	<script src="js/jquery.timers.js"></script>
+	<script src="js/QQ注册.js"></script>
+	<link rel="stylesheet" href="css/QQ注册.css">
+
+</head>
+
+<body>
+	<a class="logo" href="#">QQ</a>
+	<div class="left-pic"></div>
+	<div class="top-bar">
+		<div class="qq-light">
+			<a href="#">
+				<div class="text-qq-light">QQ靓号</div>
+				<img src="img/light.png" width="23px" height="34px">
+			</a>
+		</div>
+		<!-- <div class="qq-light-box">
+			<div class="uper">
+				<input type="text" placeholder="搜索QQ靓号，如“1992”，“520”">
+				<a href="#"></a>
+			</div>
+			<div class="bottom">
+				<a href="#">生日</a>
+				<a href="#">星座</a>
+				<a href="#">爱情</a>
+				<a href="#">手机</a>
+			</div>
+		</div> -->
+		<div class="lang">简体中文 <img class="up" src="img/up.png" style="display: none;">
+			<img class="down" src="img/down.png">
+			<ul style="display: none; ">
+				<li><a href="javascript:void(0)">繁體中文</a></li>
+				<li><a href="javascript:void(0)">English</a></li>
+			</ul>
+		</div>
+		<div class="feedback"><a href="#">意见反馈</a></div>
+	</div>
+
+
+	<div class="middle">
+		<div class="main">
+			<div class="title" style="border: 1ps solid red; z-index: 1;">
+				<div class="wel">欢迎注册QQ</div>
+				<div class="hap">每一天，乐在沟通。</div>
+				<div class="free"><a href="#">免费靓号</a></div>
+			</div>
+			<form class="reg" action="">
+				<input class="nickname" type="text" value="" placeholder="昵称" maxlength="24">
+				<div style="display: none;">
+					<div class="error-tips error-nickname">昵称不可以为空</div>
+				</div>
+				<input class="password" type="password" value="" placeholder="密码">
+				<div class="password-tips-group" style="display: none;">
+					<div class="password-tips ok">不能包括空格</div>
+					<div class="password-tips">长度为8-16个字符</div>
+					<div class="password-tips">必须包含字母、数字、符号中至少2总</div>
+				</div>
+				<div style="display: none;">
+					<div class="error-tips error-password">密码不能为空</div>
+				</div>
+				<div class="phone">
+					<input class="tel" type="tel" placeholder="手机号码">
+					<div class="nation-box">
+						<input class="nation" type="text" value="+86">
+						<div class="up-down">
+							<img class="up" src="img/up.png" style="display: none;">
+							<img class="down" src="img/down.png" style="display: inline-block;">
+						</div>
+					</div>
+				</div>
+				<div class="find">可通过该手机号找回密码</div>
+				<div style="display: none;">
+					<div class="error-tips error-tel">手机号有误</div>
+				</div>
+				<div class="send-code-area" style="display: none;">
+					<input class="input-code-area" type="text" placeholder="短信验证码">
+					<a class="send-code-button" href="javascript:void(0)">发送短信验证码</a>
+				</div>
+				<input class="reg-btn" type="submit" value="立即注册">
+			</form>
+			<div class="agree">
+				<label for="agree"><img src="img/checkbox_normal.png" style="display: none;"><img
+						src="img/checkbox_check.png">&nbsp;我已阅读并同意相关服务条款和隐私政策</label>
+				<img src="img/down.png">
+			</div>
+			<div class="footer">Copyright <span>©</span>
+				1998-<script>
+					document.write((new Date).getFullYear())
+				</script>Tencent All Rights Reserved
+			</div>
+		</div>
+
+	</div>
+</body>
+
+</html>

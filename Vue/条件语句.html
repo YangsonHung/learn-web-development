@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>条件语句</title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 条件语句使用v-if -->
+			<p v-if="isShow">渲染句子</p>
+			<p v-if="!isShow">没有被渲染</p>
+			
+			<p v-if="true">v-if传入关键字true，被渲染</p>
+			<p v-if=true>v-if传入关键字true，被渲染</p>
+			<p v-if="aaa">没有渲染句子</p>
+			
+			<!-- v-else -->
+			<div v-if="Math.random() > 0.5">
+				sorry
+			</div>
+			<div v-else>
+				not sorry
+			</div>
+			
+			<!-- v-else-if -->
+			<div v-if="type === 'A'">
+				A
+			</div>
+			<div v-else-if="type === 'B'">
+				B
+			</div>
+			<div v-else-if="type === 'C'">
+				C
+			</div>
+			
+			<!-- v-show 使用 -->
+			<div v-show="isShow">show text</div>
+			<div v-show="!isShow">do not show text</div>
+			
+		</div>
+		<script type="text/javascript">
+			new Vue({
+				el: '#app',
+				data: {
+					isShow: true,
+					type: 'C'
+				}
+			})
+		</script>
+	</body>
+</html>

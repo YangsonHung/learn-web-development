@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>外边距合并-相邻</title>
+    <style>
+        .container {
+            width: 500px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .father {
+            width: 200px;
+            height: 400px;
+            border: 1px solid black;
+        }
+
+        .son1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin-bottom: 50px;
+        }
+
+        .son2 {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            margin-top: 100px;
+        }
+
+        .over {
+            overflow: hidden;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        外边距合并指的是，当两个垂直外边距相遇时，它们将形成一个外边距。
+        合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者。 
+    -->
+    <div class="container">
+        <div class="father">
+            <div class="son1">son1 <br> 下外边距50</div>
+            <div class="son2">son2 <br> 上外边距100</div>
+        </div>
+
+        <div class="father">
+            <div class="over">
+                <div class="son1">BFC区域 son1</div>
+            </div>
+            <div class="son2">son2</div>
+        </div>
+    </div>
+    <p>两个div元素都有外边距，他们的外边距会发生合并，外边距大的会合并外边距小的</p>
+    <p>解决方法：将son1围在BFC区域中</p>
+</body>
+
+</html>

@@ -1,0 +1,725 @@
+body {
+    min-width: 1226px;
+    font: 14px/1.5 Helvetica Neue, Helvetica, Arial, Microsoft Yahei,
+        Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
+}
+
+/* 
+    topbar 是通栏的，宽度默认为浏览器body宽度，
+    在减小浏览器body宽度时，topbar的宽度依旧是通栏的，背景色只照顾到显示的浏览器body宽度，
+    所以当浏览器body宽度减小到小于container宽度时，container大于body宽度的超出部分不会显示背景色，浏览器底部会显示横向滚动条，
+    因为container有宽度，浏览器会显示。
+    解决方法1；container也设置背景色
+    解决方法2；给body设置最小宽度为container的宽度（版心宽度），这样即使减小浏览器宽度（鼠标横向拉伸浏览器），body宽度还是最小宽度(min-width)，
+    而不是随着浏览器被拉伸的body宽度也就是通栏的宽度。
+    可以将1226值减小一点看效果
+    min-width 用来控制当浏览器被横向拉伸减小宽度时，元素的最小宽度的变化情况
+    设置了这个值，浏览器的最小宽度不受浏览器拉伸影响
+*/
+
+blockquote,
+body,
+button,
+dd,
+dl,
+dt,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+input,
+legend,
+li,
+ol,
+p,
+pre,
+td,
+textarea,
+th,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    display: block;
+}
+
+ul {
+    list-style: none;
+}
+
+a,
+a:hover {
+    text-decoration: none;
+}
+
+/* 双伪元素清除浮动 */
+
+.clearfix::before,
+.clearfix::after {
+    content: " ";
+    display: table;
+}
+
+.clearfix::after {
+    /* 清除左右两侧的浮动 */
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* 版心 */
+
+.w {
+    width: 1226px;
+    margin: 0 auto;
+}
+
+/* 导航栏 */
+
+.topbar {
+    height: 40px;
+    background-color: #333;
+    font-size: 12px;
+}
+
+.topbar-container .container-item,
+.topbar-container .sep {
+    display: inline-block;
+    line-height: 40px;
+}
+
+.topbar-container .sep {
+    font-family: sans-serif;
+}
+
+.topbar-container .container-item-link {
+    display: inline-block;
+    color: #b0b0b0;
+    text-align: center;
+}
+
+.topbar-container .sep {
+    color: #424242;
+    margin: 0 0.3em;
+}
+
+.topbar-container .container-item-link:hover {
+    color: #fff;
+}
+
+.topbar-container-left,
+.topbar-container-right {
+    height: 40px;
+}
+
+.topbar-container-left {
+    float: left;
+}
+
+.topbar-container-right {
+    float: right;
+}
+
+/* 快速导航栏 */
+
+.quickbar {
+    height: 100px;
+}
+
+.quickbar .quickbar-list {
+    float: left;
+    margin-top: 22px;
+    margin-left: 179px;
+}
+
+.quickbar .quickbar-list .quickbar-item {
+    float: left;
+}
+
+/* logo */
+
+.quickbar .logo {
+    float: left;
+    width: 55px;
+    height: 55px;
+    margin: 22px 0;
+    display: block;
+    background-color: #ff6700;
+    position: relative;
+    /* 隐藏before元素,修复鼠标滑过before元素时也会移动背景 */
+    overflow: hidden;
+}
+
+.quickbar .logo::before,
+.quickbar .logo::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: all 0.2s;
+}
+
+.quickbar .logo::before {
+    left: -55px;
+    background: url("https://s02.mifile.cn/assets/static/image/mi-home.png") no-repeat center;
+    opacity: 0;
+}
+
+.quickbar .logo::after {
+    background: url("https://s02.mifile.cn/assets/static/image/mi-logo.png") no-repeat center;
+    opacity: 1;
+}
+
+.quickbar .logo:hover::before,
+.quickbar .logo:hover::after {
+    transform: translate(55px);
+}
+
+.quickbar .logo:hover::before {
+    opacity: 1;
+}
+
+.quickbar .logo:hover::after {
+    opacity: 0;
+}
+
+/* 加opacity的目的是为了解决移动背景时，有背景的残影。加opacity了移动时，就隐藏当前背景，显示下一个背景 */
+
+/* 快速导航栏项 */
+
+.quickbar .quickbar-list .quickbar-item-link {
+    display: block;
+    height: 55px;
+    line-height: 55px;
+    color: #333;
+    padding: 0 10px;
+    font-size: 16px;
+}
+
+.quickbar .quickbar-item .quickbar-item-link:hover {
+    color: #ff6700;
+}
+
+/* 搜索框 */
+
+.quickbar .search-box {
+    float: right;
+    margin-top: 25px;
+    height: 50px;
+    position: relative;
+}
+
+.search-box .input-box,
+.search-box .submit-box {
+    font-size: 14px;
+    height: 100%;
+    outline: none;
+    border: 1px solid #e0e0e0;
+}
+
+.search-box .input-box {
+    width: 245px;
+    padding: 0 10px;
+}
+
+.search-box .submit-box {
+    float: right;
+    width: 52px;
+    position: relative;
+    font-family: "icomoon";
+    font-size: 18px;
+    font-weight: bold;
+    background-color: white;
+}
+
+.search-box .input-box:focus {
+    border-color: #ff6700;
+}
+
+.search-box .submit-box:hover {
+    background-color: #ff6700;
+    color: #fff;
+    border-color: #ff6700;
+}
+
+.home {
+    margin-bottom: 26px;
+}
+
+/* 产品列表栏 */
+
+.banner {
+    height: 460px;
+    position: relative;
+}
+
+.banner .category {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(105, 101, 101, 0.6);
+    width: 234px;
+    padding: 20px 0;
+    /* height: 100%; */
+    /* box-sizing: border-box; */
+    /* 如果要继承父级高度，需要盒模型设置为border-box，避免padding撑开盒子 */
+}
+
+.category .category-list .category-item {
+    padding-left: 30px;
+    font-size: 14px;
+}
+
+.category .category-list .category-item:hover {
+    background-color: #ff6700;
+}
+
+.category .category-item .category-item-link {
+    color: #fff;
+    display: block;
+    height: 42px;
+    line-height: 42px;
+    position: relative;
+}
+
+.category .category-item .category-item-link .icon-arrow-right {
+    font-size: 16px;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* 左右按钮 */
+
+.banner .button-left,
+.banner .button-right {
+    width: 41px;
+    height: 69px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.banner .button-left {
+    left: 234px;
+    background: url("https://i1.mifile.cn/f/i/2014/cn/icon/icon-slides.png") no-repeat -84px;
+}
+
+.banner .button-right {
+    right: 0;
+    background: url("https://i1.mifile.cn/f/i/2014/cn/icon/icon-slides.png") no-repeat -124px;
+}
+
+.banner .button-left:hover {
+    background-position: 0;
+    cursor: pointer;
+}
+
+.banner .button-right:hover {
+    background-position: -42px;
+    cursor: pointer;
+}
+
+/* 导航条 */
+
+.banner .swiperbar {
+    position: absolute;
+    right: 30px;
+    bottom: 20px;
+}
+
+.swiperbar-list .swiperbar-item {
+    float: left;
+    margin: 5px 4px;
+}
+
+.swiperbar-item .circle {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+}
+
+.swiperbar-item.current .circle {
+    background: rgba(255, 255, 255, 0.4);
+    border-color: rgba(0, 0, 0, 0.4);
+}
+
+/* 热门图片展示 */
+
+.hot {
+    margin-top: 14px;
+}
+
+.hot .fast-choice {
+    float: left;
+    width: 234px;
+}
+
+.choice-list {
+    padding: 3px;
+    background: #5f5750;
+}
+
+.choice-list .choice-item {
+    float: left;
+    width: 70px;
+    height: 82px;
+    padding: 0 3px;
+    position: relative;
+}
+
+.choice-item::before,
+.choice-item::after {
+    position: absolute;
+    content: "";
+    background: #665e57;
+}
+
+.choice-item::before {
+    width: 64px;
+    height: 1px;
+    left: 6px;
+    top: -1px;
+}
+
+.choice-item::after {
+    width: 1px;
+    height: 70px;
+    left: 0px;
+    top: 6px;
+}
+
+.choice-item a {
+    display: block;
+    color: #fff;
+    opacity: 0.7;
+    font-size: 12px;
+    text-align: center;
+    padding-top: 18px;
+}
+
+.choice-item a:hover {
+    opacity: 1;
+}
+
+.choice-item a img {
+    width: 24px;
+    height: 24px;
+    margin: 0px 23px 4px;
+}
+
+.hot-pic {
+    /* 父元素也浮动，解决了子级浮动，父级高度为0的问题 */
+    float: left;
+    margin-left: 14px;
+    width: 978px;
+}
+
+.hot-pic .pic-item {
+    /* 子元素浮动 */
+    float: left;
+    margin-left: 15px;
+}
+
+.hot-pic .first {
+    margin-left: 0;
+}
+
+.hot-pic img {
+    width: 316px;
+    height: 170px;
+}
+
+/* 页面主要产品 */
+
+.main {
+    background: #f5f5f5;
+    padding-top: 4px;
+    padding-bottom: 12px;
+}
+
+/* 小米闪购 */
+
+.shangou-title,
+.phone-title {
+    position: relative;
+    height: 58px;
+}
+
+.shangou-title .shangou-title-text,
+.phone-title .phone-title-text {
+    color: #333;
+    font-size: 22px;
+    font-weight: 200;
+    line-height: 58px;
+}
+
+.shangou-title .arrow {
+    position: absolute;
+    right: 0;
+    top: 24px;
+    /* 解决span的间距问题 */
+    font-size: 0;
+}
+
+.arrow span {
+    width: 24px;
+    height: 16px;
+    line-height: 16px;
+    font-size: 16px;
+    padding: 3px 5px;
+    display: inline-block;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+    color: #b0b0b0;
+    margin-left: -1px;
+}
+
+/* 闪购图片 */
+
+.shangou-body .shangoubox {
+    width: 234px;
+    float: left;
+    background: #fff;
+    margin-left: 14px;
+    text-align: center;
+    border-top-width: 1px;
+    border-top-style: solid;
+}
+
+.shangoubox a,
+.shangoubox .countdown {
+    height: 300px;
+    padding-top: 39px;
+}
+
+.shangoubox a,
+.phone-item a {
+    display: block;
+    position: relative;
+}
+
+.shangoubox .shangou-time {
+    font-size: 21px;
+    font-weight: normal;
+    color: #ef3a3b;
+    padding-top: 15px;
+}
+
+.shangoubox .shangou-ico {
+    margin: 25px auto;
+}
+
+.shangoubox .tip {
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 15px;
+}
+
+.shangoubox .time-end {
+    width: 168px;
+    margin: 28px auto 0;
+}
+
+.shangoubox .time-end li {
+    width: 46px;
+    height: 46px;
+    line-height: 46px;
+    font-size: 24px;
+    color: #fff;
+    background-color: #605751;
+    float: left;
+    position: relative;
+}
+
+.shangoubox .time-end li:nth-child(1) {
+    margin-right: 14px;
+}
+
+.shangoubox .time-end li:nth-child(2) {
+    margin-right: 14px;
+}
+
+.shangoubox .time-end li:nth-child(1):after,
+.shangoubox .time-end li:nth-child(2):after {
+    content: ":";
+    font-size: 28px;
+    height: 46px;
+    width: 15px;
+    line-height: 46px;
+    position: absolute;
+    right: -15px;
+    color: #605751;
+}
+
+.shangoubox:nth-child(1) {
+    border-top-color: #e53935;
+    margin-left: 0;
+    background: #f1eded;
+}
+
+.shangoubox:nth-child(2) {
+    border-top-color: #ffac13;
+}
+
+.shangoubox:nth-child(3) {
+    border-top-color: #83c44e;
+}
+
+.shangoubox:nth-child(4) {
+    border-top-color: #2196f3;
+}
+
+.shangoubox:nth-child(5) {
+    border-top-color: #e53935;
+}
+
+.shangoubox a p,
+.phone-item a p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.shangoubox a .shantoubox-title,
+.phone-item a .phone-item-title {
+    margin: 0 20px 3px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #212121;
+}
+
+.shangoubox a .content::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.shangoubox a .des,
+.phone-item a .des {
+    color: #b0b0b0;
+    font-size: 12px;
+    height: 18px;
+    margin: 0 20px 12px;
+}
+
+.shangoubox .price,
+.phone-item .price {
+    color: #ff6709;
+}
+
+.shangoubox .price del,
+.phone-item .price del {
+    color: #b0b0b0;
+    padding: 0 3px;
+}
+
+.shangoubox a img,
+.phone-item a img {
+    margin: 0 auto 22px;
+}
+
+.main .shangou-bottom {
+    margin-top: 20px;
+}
+
+.shangou-bottom a {
+    display: block;
+}
+
+.phone-title {
+    position: relative;
+    margin-top: 20px;
+}
+
+.phone-title-more {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 58px;
+}
+
+.phone-title-more .more-link {
+    line-height: 58px;
+    color: #424242;
+    font-size: 16px;
+    transition: all 0.4s;
+}
+
+.phone-title-more .more-link:hover {
+    color: #ff6700;
+}
+
+.phone-title-more .more-link .icon-circle-right {
+    margin-left: 12px;
+    font-size: 18px;
+    vertical-align: text-bottom;
+}
+
+.phone-body-left,
+.phone-body-right {
+    float: left;
+}
+
+.phone-body-left {
+    transition: all 0.2s linear;
+}
+
+.phone-body-left:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    transform: translate3d(0, -2px, 0);
+}
+
+.phone-body-right {
+    width: 978px;
+    margin-left: 14px;
+}
+
+.phone-body-right .phone-list {
+    height: 614px;
+    margin-left: -14px;
+    margin-bottom: -14px;
+    width: 992px;
+}
+
+.phone-item .price del {
+    margin-left: 0.5em;
+}
+
+.phone-list .phone-item {
+    float: left;
+    width: 234px;
+    height: 260px;
+    padding: 20px 0;
+    background-color: #fff;
+    margin-left: 14px;
+    margin-bottom: 14px;
+    text-align: center;
+    transition: all 0.2s linear;
+}
+
+.phone-list .phone-item:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    transform: translate3d(0, -2px, 0);
+}
+
+.phone-bottom {
+    margin: 22px 0;
+}

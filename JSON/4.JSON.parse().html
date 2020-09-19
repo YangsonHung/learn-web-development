@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>4.JSON.parse()</title>
+</head>
+
+<body>
+    <button onclick="requesData1()">请求JSON数据</button>
+    <button onclick="requesData2()">请求数组形式的JSON数据</button>
+    <button onclick="requesData3()">请求有Date形式的JSON数据</button>
+    <button onclick="fun()">JSON数据有函数形式的处理</button>
+
+    <script>
+        // 接收服务器数据时一般是字符串，要用JSON.parse()方法将接收的数据转为JS对象
+        // JSON.parse(text[, reviver])
+        // text: 一个有效的JSON字符串
+        // reviver：可选，一个转换结果的函数，将为对象的每个成员调用此函数
+
+        // 解析JSON格式的字符串
+        var obj = JSON.parse('{"name":"jack", "sex":"male", "age":"18"}')
+        console.log(typeof obj)
+        console.log(obj)
+
+        // parse传入一个函数转换解析出的属性
+        var obj2 = JSON.parse('{"name":"jack", "sex":"male", "age":"18"}', function(key, value) {
+            if(key === 'name') {
+                return value + " black"
+            }
+            return value
+        })
+        console.log(obj2)
+        console.log(JSON.stringify(obj2))
+
+        function requesData1() {
+            var xhr = new XMLHttpRequest()
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // 请求到的JSON数据是字符串形式
+                    console.log(typeof this.responseText)
+                    console.log(this.responseText)
+                    // 解析JSON字符串为JS对象
+                    obj = JSON.parse(this.responseText)
+                    console.log(typeof obj)
+                    console.log(obj)
+                }
+            }
+            xhr.open("GET", "data/json_data_obj.json", true)
+            xhr.send()
+        }
+
+        function requesData2() {
+            var xhr = new XMLHttpRequest()
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // obj是数组
+                    obj = JSON.parse(this.responseText)
+                    console.log(typeof obj)
+                    console.log(obj[0])
+                    console.log(obj[1])
+                    console.log(obj[2])
+                }
+            }
+            xhr.open("GET", "data/json_data_arr.json", true)
+            xhr.send()
+        }
+
+        function requesData3() {
+            var xhr = new XMLHttpRequest()
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    obj = JSON.parse(this.responseText)
+                    console.log(new Date(obj.date))
+
+                    // 利用parse方法的第二个参数，对date字符串做处理
+                    obj2 = JSON.parse(this.responseText, function (key, value) {
+                        if (key === "date") {
+                            return new Date(value)
+                        } else {
+                            return value
+                        }
+                    })
+                    console.log(obj2.date)
+                }
+            }
+            xhr.open("GET", "data/json_data_obj.json", true)
+            xhr.send()
+        }
+
+        // 不建议在JSON中使用函数
+        function fun() {
+            var text = '{ "name":"Runoob", "alexa":"function () {return 10000;}", "site":"www.runoob.com"}'
+            obj = JSON.parse(text)
+            obj.alexa = eval("(" + obj.alexa + ")")
+            console.log(obj.alexa())
+        }
+    </script>
+</body>
+
+</html>
