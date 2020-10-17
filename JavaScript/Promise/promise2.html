@@ -20,11 +20,18 @@
 			// }).then(() => {
 			// 	print(3000, "Third");
 			// })
+			// 将异步操作变得像同步操作，添加 async， await 后面的异步操作只有在执行完后，才继续执行下一步操作
 			async function test() {
-				await print(1000, "First");
-				await print(2000, "Scond");
+				await print(2000, "First");
+				await print(1000, "Scond");
 				await print(3000, "Third");
 			}
+			// 不加 async 指令 ，会先打印第二句
+			// function test() {
+			// 	print(2000, "First");
+			// 	print(1000, "Scond");
+			// 	print(3000, "Third");
+			// }
 			test();
 			console.log('test');
 		</script>

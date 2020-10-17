@@ -16,6 +16,7 @@ function getTimeRemaining(endtime) {
 
 function initializeClock(id, endtime) {
 	const clock = document.getElementById(id);
+	clock.style.display = 'block';
 	const daysSpan = clock.querySelector('.days');
 	const hoursSpan = clock.querySelector('.hours');
 	const minutesSpan = clock.querySelector('.minutes');
@@ -37,6 +38,25 @@ function initializeClock(id, endtime) {
 	updateClock();
 	const timeinterval = setInterval(updateClock, 1000);
 }
+const schedule = [
+	['Jul 25 2015', 'Sept 20 2015'],
+	['Sept 21 2015', 'Jul 25 2016'],
+	['Jul 25 2016', 'Jul 25 2030'],
+];
 
-const deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
-initializeClock('clockdiv', deadline);
+// 遍历schedule中的每个元素
+schedule.forEach(([startDate, endDate]) => {
+	// 以毫秒为单位放置日期以便于比较
+	const startMs = Date.parse(startDate);
+	const endMs = Date.parse(endDate);
+	const currentMs = Date.parse(new Date());
+
+	// 如果当前日期在开始日期和结束日期之间，则显示时钟
+	if (endMs > currentMs && currentMs >= startMs) {
+        console.log('endDate :>> ', endDate);
+		initializeClock('clockdiv', endDate);
+	}
+});
+
+// const deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
+// initializeClock('clockdiv', deadline);

@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Date</title>
+		<script>
+			//创建日期对象
+			var now = new Date();
+
+			//GMT+8时间==本机时间
+			// 以下时间格式都是：Tue Oct 22 2019 21:49:42 GMT+0800 (中国标准时间)
+			console.log('now :>> ', now);
+			console.log('new Date() :>> ', new Date());
+			console.log('new Date :>> ', new Date());
+
+			// 时间格式转换
+			console.log('本地时间 :>> ', now.toLocaleString());
+			console.log('UTC时间 :>> ', now.toUTCString());
+
+			// parse() 方法可解析一个日期时间字符串
+			// 1970/1/1距离现在的毫秒数
+			console.log('Date.parse(new Date()) :>> ', Date.parse(new Date()));
+
+			//时间戳
+			console.log('时间戳：Date.now() :>> ', Date.now());
+			//类型 number
+			console.log('类型 :>> ', typeof Date.now());
+			//number 转 Date对象
+			console.log('number 转 Date对象 :>> ', new Date(Date.now()));
+
+			// 打印如下的时间格式
+			// 2019-10-22 21:45:11
+			console.log(
+				now.getFullYear() +
+					'-' +
+					(now.getMonth() + 1) +
+					'-' +
+					now.getDate() +
+					' ' +
+					now.getHours() +
+					':' +
+					now.getMinutes() +
+					':' +
+					now.getSeconds()
+			);
+		</script>
+	</head>
+
+	<body></body>
+</html>
