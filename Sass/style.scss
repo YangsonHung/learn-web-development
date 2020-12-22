@@ -149,3 +149,9 @@ p + .box4 {
         background-image: url('/image/#{$member}.jpg');
     }
 }
+
+.qwe {
+    #{&}t {
+        color: red;
+    }
+}
