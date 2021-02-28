@@ -1,0 +1,75 @@
+$v: (
+    name: 'name',
+    age: 'age',
+);
+
+$width: 20px;
+
+.main {
+    color: red;
+    width: #{$width};
+}
+@mixin firefox-message($selector) {
+    body.firefox #{$selector}:before {
+        content: 'Hi, Firefox users!';
+    }
+}
+@include firefox-message('.header');
+
+.c {
+    color: blanchedalmond;
+}
+p {
+    width: 1in + 8pt;
+}
+
+p {
+    font: 10px/8px; // Plain CSS, no division
+    $width: 1000px;
+    width: $width/2; // Uses a variable, does division
+    width: round(1.5) / 2; // Uses a function, does division
+    height: (500px/2); // Uses parentheses, does division
+    margin-left: 5px + 8px/2px; // Uses +, does division
+}
+p {
+    $font-size: 12px;
+    $line-height: 30px;
+    font: #{$font-size}/#{$line-height};
+}
+
+p {
+    color: #010203 + #040506;
+}
+
+.p {
+    color: rebeccapurple;
+}
+
+$translucent-red: rgba(255, 0, 0, 0.5);
+$green: #00ff00;
+div {
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled='false', startColorstr='#{ie-hex-str($green)}', endColorstr='#{ie-hex-str($translucent-red)}');
+}
+
+p:before {
+    content: 'Foo ' + Bar;
+    font-family: sans- + 'serif';
+}
+
+p {
+    margin: 3px + 4px auto;
+}
+
+p:before {
+    content: 'I ate #{5 + 10} pies!';
+}
+$value: null;
+p:before {
+    content: 'I ate #{$value} pies!';
+}
+p {
+    width: 1em + (2em * 3);
+}
+p {
+    color: hsl(0, 100%, 50%);
+}

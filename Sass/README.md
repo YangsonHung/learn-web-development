@@ -310,7 +310,7 @@ $version: "1.2.3";
 >
 > 通过 interpolation，SassScript 甚至可以生成选择器或属性名，这一点对编写 mixin 有很大帮助。
 
-### 6.1. Interactive Shell
+### 6.1.Interactive Shell
 
 > Interactive Shell 可以在命令行中测试 SassScript 的功能。在命令行中输入 `sass -i`，然后输入想要测试的 SassScript 查看输出结果
 
@@ -380,3 +380,370 @@ scss：
 - 空值，`null`
 - 数组 (list)，用空格或逗号作分隔符，`1.5em 1em 0 2em, Helvetica, Arial, sans-serif`
 - maps, 相当于 JavaScript 的 object，`(key1: value1, key2: value2)`
+
+> SassScript 也支持其他 CSS 属性值，比如 Unicode 字符集，或 `!important` 声明。然而Sass 不会特殊对待这些属性值，一律视为无引号字符串。
+
+#### 6.3.1.字符串（Strings）
+
+> SassScript 支持 CSS 的两种字符串类型：有引号字符串 (quoted strings)，如 `"Lucida Grande"` `'http://sass-lang.com'`；与无引号字符串 (unquoted strings)，如 `sans-serif` `bold`，在编译 CSS 文件时不会改变其类型。只有一种情况例外，使用 `#{}` (interpolation) 时，有引号字符串将被编译为无引号字符串，这样便于在 mixin 中引用选择器名
+
+scss：
+
+```scss
+@mixin firefox-message($selector) {
+    body.firefox #{$selector}:before {
+        content: 'Hi, Firefox users!';
+    }
+}
+@include firefox-message('.header');
+```
+
+编译为css：
+
+```css
+body.firefox .header:before {
+  content: 'Hi, Firefox users!';
+}
+```
+
+#### 6.3.2.数组（Lists）
+
+> 数组 (lists) 指 Sass 如何处理 CSS 中 `margin: 10px 15px 0 0` 或者 `font-face: Helvetica, Arial, sans-serif` 这样通过空格或者逗号分隔的一系列的值。事实上，独立的值也被视为数组 —— 只包含一个值的数组。
+>
+> 数组本身没有太多功能，但 [Sass list functions](http://sass-lang.com/docs/yardoc/Sass/Script/Functions.html#list-functions) 赋予了数组更多新功能：`nth` 函数可以直接访问数组中的某一项；`join` 函数可以将多个数组连接在一起；`append` 函数可以在数组中添加新值；而 `@each` 指令能够遍历数组中的每一项。
+>
+> 数组中可以包含子数组，比如 `1px 2px, 5px 6px` 是包含 `1px 2px` 与 `5px 6px` 两个数组的数组。如果内外两层数组使用相同的分隔方式，需要用圆括号包裹内层，所以也可以写成 `(1px 2px) (5px 6px)`。变化是，之前的 `1px 2px, 5px 6px` 使用逗号分割了两个子数组 (comma-separated)，而 `(1px 2px) (5px 6px)` 则使用空格分割(space-separated)。
+>
+> 当数组被编译为 CSS 时，Sass 不会添加任何圆括号（CSS 中没有这种写法），所以 `(1px 2px) (5px 6px)` 与 `1px 2px, 5px 6px` 在编译后的 CSS 文件中是完全一样的，但是它们在 Sass 文件中却有不同的意义，前者是包含两个数组的数组，而后者是包含四个值的数组。
+>
+> 用 `()` 表示不包含任何值的空数组（在 Sass 3.3 版之后也视为空的 map）。空数组不可以直接编译成 CSS，比如编译 `font-family: ()` Sass 将会报错。如果数组中包含空数组或空值，编译时将被清除，比如 `1px 2px () 3px` 或 `1px 2px null 3px`。
+>
+> 基于逗号分隔的数组允许保留结尾的逗号，这样做的意义是强调数组的结构关系，尤其是需要声明只包含单个值的数组时。例如 `(1,)` 表示只包含 `1` 的数组，而 `(1 2 3,)` 表示包含 `1 2 3` 这个以空格分隔的数组的数组
+
+#### 6.3.3.Maps
+
+> 映射表示键和值之间的关联，其中键用于查找值。它们使得将值收集到指定组中并动态访问这些组变得很容易。它们在CSS中没有直接的并行，尽管它们在语法上类似于媒体查询表达式:与列表不同，映射必须总是用圆括号括起来，并且必须总是用逗号分隔。map中的键和值都可以是任何SassScript对象。一个map可能只有一个值与一个给定的键相关联(尽管这个值可能是一个列表)。但是，一个给定的值可能与许多键相关联。像列表一样，映射主要是使用SassScript函数来操作的。map-get函数在映射中查找值，map-merge函数向映射中添加值。@each指令可以用来为map中的每个键/值对添加样式。映射中的对顺序始终与创建映射时相同。地图也可以在任何列表可以使用的地方使用。当列表函数使用时，映射被视为一对的列表。例如，(key1: value1, key2: value2)将被列表函数视为嵌套的列表key1 value1, key2 value2。但是，除了空列表之外，列表不能被视为映射。()既表示一个没有键/值对的映射，也表示一个没有元素的列表。注意，映射键可以是任何Sass数据类型(甚至是另一个映射)，声明映射的语法允许对任意SassScript表达式进行计算以确定键。映射不能转换为纯CSS。使用1作为变量的值或CSS函数的参数将导致错误。使用inspect($value)函数生成一个用于调试映射的输出字符串。
+
+#### 6.3.4.颜色（Colors）
+
+> 任何CSS颜色表达式都返回一个SassScript颜色值。这包括大量与未加引号的字符串无法区分的命名颜色。在压缩输出模式下，Sass将输出颜色的最小CSS表示。例如，#FF0000在压缩模式下输出为红色，但是blanchedalmond输出为#FFEBCD。用户在使用已命名颜色时遇到的一个常见问题是，由于Sass更喜欢与在其他输出模式中输入的相同的输出格式，在压缩时，插入到选择器中的颜色将成为无效语法。为了避免这种情况，如果要在选择器的构造中使用指定颜色，请始终引用它们。
+
+### 6.4.运算（Operations）
+
+#### 6.4.1.数字运算
+
+> SassScript 支持数字的加减乘除、取整等运算 (`+, -, *, /, %`)，如果必要会在不同单位间转换值
+
+scss：
+
+```scss
+p {
+  width: 1in + 8pt;
+}
+```
+
+编译为css：
+
+```css
+p {
+  width: 1.11111in;
+}
+```
+
+> 关系运算 `<, >, <=, >=` 也可用于数字运算，相等运算 `==, !=` 可用于所有数据类型
+
+##### 6.4.1.1.除法运算
+
+> `/` 在 CSS 中通常起到分隔数字的用途，SassScript 作为 CSS 语言的拓展当然也支持这个功能，同时也赋予了 `/` 除法运算的功能。也就是说，如果 `/` 在 SassScript 中把两个数字分隔，编译后的 CSS 文件中也是同样的作用。
+
+以下三种情况 `/` 将被视为除法运算符号：
+
+- 如果值，或值的一部分，是变量或者函数的返回值
+- 如果值被圆括号包裹
+- 如果值是算数表达式的一部分
+
+scss：
+
+```scss
+p {
+    font: 10px/8px; // Plain CSS, no division
+    $width: 1000px;
+    width: $width/2; // Uses a variable, does division
+    width: round(1.5) / 2; // Uses a function, does division
+    height: (500px/2); // Uses parentheses, does division
+    margin-left: 5px + 8px/2px; // Uses +, does division
+}
+```
+
+编译为css：
+
+```css
+p {
+  font: 10px/8px;
+  width: 500px;
+  width: 1;
+  height: 250px;
+  margin-left: 9px;
+}
+```
+
+> 如果需要使用变量，同时又要确保 `/` 不做除法运算而是完整地编译到 CSS 文件中，只需要用 `#{}` 插值语句将变量包裹
+
+scss：
+
+```scss
+p {
+  $font-size: 12px;
+  $line-height: 30px;
+  font: #{$font-size}/#{$line-height};
+}
+```
+
+编译为css：
+
+```css
+p {
+  font: 12px/30px;
+}
+```
+
+#### 6.4.2.颜色值运算（Color Operations）
+
+> 颜色值的运算是分段计算进行的，也就是分别计算红色，绿色，以及蓝色的值
+
+scss：
+
+```scss
+p {
+  color: #010203 + #040506;
+}
+```
+
+> 计算 `01 + 04 = 05` `02 + 05 = 07` `03 + 06 = 09`
+
+编译为css：
+
+```css
+p {
+  color: #050709;
+}
+```
+
+> 使用 [color functions](http://sass-lang.com/docs/yardoc/Sass/Script/Functions.html) 比计算颜色值更方便一些
+
+> 数字与颜色值之间也可以进行算数运算，同样也是分段计算的
+
+scss：
+
+```scss
+p {
+  color: #010203 * 2;
+}
+```
+
+> 计算 `01 * 2 = 02` `02 * 2 = 04` `03 * 2 = 06`，然后编译为
+
+编译为css：
+
+```css
+p {
+  color: #020406;
+}
+```
+
+> 颜色值的 alpha channel 可以通过 [opacify](http://sass-lang.com/docs/yardoc/Sass/Script/Functions.html#opacify-instance_method) 或 [transparentize](http://sass-lang.com/docs/yardoc/Sass/Script/Functions.html#transparentize-instance_method) 两个函数进行调整。
+
+scss：
+
+```scss
+$translucent-red: rgba(255, 0, 0, 0.5);
+p {
+  color: opacify($translucent-red, 0.3);
+  background-color: transparentize($translucent-red, 0.25);
+}
+```
+
+
+编译为css：
+
+```css
+p {
+  color: rgba(255, 0, 0, 0.8);
+  background-color: rgba(255, 0, 0, 0.25);
+}
+```
+
+> IE 滤镜要求所有的颜色值包含 alpha 层，而且格式必须固定 `#AABBCCDD`，使用 `ie_hex_str` 函数可以很容易地将颜色转化为 IE 滤镜要求的格式。
+
+scss：
+
+```scss
+$translucent-red: rgba(255, 0, 0, 0.5);
+$green: #00ff00;
+div {
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled='false', startColorstr='#{ie-hex-str($green)}', endColorstr='#{ie-hex-str($translucent-red)}');
+}
+```
+
+
+编译为css：
+
+```css
+div {
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled='false', startColorstr='#FF00FF00', endColorstr='#80FF0000');
+}
+```
+
+#### 6.4.3. 字符串运算 (String Operations)
+
+> +：可用于连接字符串
+
+scss：
+
+```scss
+p {
+  cursor: e + -resize;
+}
+```
+
+
+编译为css：
+
+```css
+p {
+  cursor: e-resize;
+}
+```
+
+> 如果有引号字符串（位于 `+` 左侧）连接无引号字符串，运算结果是有引号的，相反，无引号字符串（位于 `+` 左侧）连接有引号字符串，运算结果则没有引号。
+
+scss：
+
+```scss
+p:before {
+  content: "Foo " + Bar;
+  font-family: sans- + "serif";
+}
+```
+
+
+编译为css：
+
+```css
+p:before {
+  content: "Foo Bar";
+  font-family: sans-serif;
+}
+```
+
+> 运算表达式与其他值连用时，用空格做连接符
+
+scss：
+
+```scss
+p {
+    margin: 3px + 4px auto;
+}
+```
+
+
+编译为css：
+
+```css
+p {
+  margin: 7px auto;
+}
+```
+
+> 在有引号的文本字符串中使用 `#{}` 插值语句可以添加动态的值
+
+scss：
+
+```scss
+p:before {
+    content: 'I ate #{5 + 10} pies!';
+}
+```
+
+
+编译为css：
+
+```css
+p:before {
+  content: "I ate 15 pies!";
+}
+```
+
+> 空的值被视作插入了空字符串
+
+scss：
+
+```scss
+$value: null;
+p:before {
+    content: 'I ate #{$value} pies!';
+}
+```
+
+
+编译为css：
+
+```css
+p:before {
+  content: "I ate  pies!";
+}
+```
+
+#### 6.4.4. 布尔运算 (Boolean Operations)
+
+SassScript 支持布尔型的 `and` `or` 以及 `not` 运算。
+
+#### 6.4.5. 数组运算 (List Operations)
+
+数组不支持任何运算方式，只能使用 [list functions](http://sass-lang.com/docs/yardoc/Sass/Script/Functions.html#list-functions) 控制。
+
+### 6.5. 圆括号 (Parentheses)
+
+> 圆括号可以用来影响运算的顺序
+
+scss：
+
+```scss
+p {
+    width: 1em + (2em * 3);
+}
+```
+
+
+编译为css：
+
+```css
+p {
+  width: 7em;
+}
+```
+
+### 6.6. 函数 (Functions)
+
+> SassScript 定义了多种函数，有些甚至可以通过普通的 CSS 语句调用
+
+scss：
+
+```scss
+p {
+    color: hsl(0, 100%, 50%);
+}
+```
+
+
+编译为css：
+
+```css
+p {
+  color: red;
+}
+```
+
+#### 6.6.1. 关键词参数 (Keyword Arguments)
+
+> Sass 函数允许使用关键词参数 (keyword arguments)，上面的例子也可以写成
