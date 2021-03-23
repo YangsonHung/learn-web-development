@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>demo2</title>
+        <style>
+            svg {
+                border: 1px solid red;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="display: flex; flex-direction: column">
+            <!-- 矩形 -->
+            <!--
+                fill: 定义填充颜色
+                stroke-width: 定义描边宽度
+                stroke：定义描边颜色
+                fill-opacity：定义填充颜色透明度
+                stroke-opacity：定义描边颜色的透明度
+                opacity：定义整个元素的不透明度
+            -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <rect width="300" height="100" style="fill: rgb(0, 0, 255); stroke-width: 1; stroke: rgb(0, 0, 0)" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <rect
+                    x="50"
+                    y="20"
+                    width="150"
+                    height="150"
+                    style="fill: blue; stroke: pink; stroke-width: 5; fill-opacity: 0.1; stroke-opacity: 0.9"
+                />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <rect
+                    x="50"
+                    y="20"
+                    width="150"
+                    height="150"
+                    style="fill: blue; stroke: pink; stroke-width: 5; opacity: 0.5"
+                />
+            </svg>
+            <!-- 圆角矩形：利用rx ry  -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <rect
+                    x="50"
+                    y="20"
+                    rx="20"
+                    ry="20"
+                    width="150"
+                    height="150"
+                    style="fill: red; stroke: black; stroke-width: 5; opacity: 0.5"
+                />
+            </svg>
+            <!-- 圆 -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <circle cx="40" cy="40" r="40" stroke="black" stroke-width="2" fill="red" />
+            </svg>
+            <!-- 椭圆 -->
+            <!--
+                cx：椭圆中心 x坐标
+                cy：椭圆中心 y坐标
+                rx：水平半径
+                ry：垂直半径
+             -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <ellipse cx="300" cy="80" rx="100" ry="50" style="fill: yellow; stroke: purple; stroke-width: 2" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <ellipse cx="240" cy="100" rx="220" ry="30" style="fill: purple" />
+                <ellipse cx="220" cy="70" rx="190" ry="20" style="fill: lime" />
+                <ellipse cx="210" cy="45" rx="170" ry="15" style="fill: yellow" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <ellipse cx="240" cy="50" rx="220" ry="30" style="fill: yellow" />
+                <ellipse cx="220" cy="50" rx="190" ry="20" style="fill: white" />
+            </svg>
+            <!-- 直线 -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <line x1="0" y1="0" x2="200" y2="200" style="stroke: rgb(255, 0, 0); stroke-width: 2" />
+            </svg>
+            <!-- 多边形 -->
+            <svg height="210" width="500">
+                <polygon points="200,10 250,190 160,210" style="fill: lime; stroke: purple; stroke-width: 1" />
+            </svg>
+            <svg height="250" width="500">
+                <polygon points="220,10 300,210 170,250 123,234" style="fill: lime; stroke: purple; stroke-width: 1" />
+            </svg>
+            <svg height="210" width="500">
+                <polygon
+                    points="100,10 40,198 190,78 10,78 160,198"
+                    style="fill: yellow; stroke: red; stroke-width: 2; fill-rule: nonzero"
+                />
+            </svg>
+            <svg height="210" width="500">
+                <polygon
+                    points="100,10 40,198 190,78 10,78 160,198"
+                    style="fill: yellow; stroke: red; stroke-width: 2; fill-rule: evenodd"
+                />
+            </svg>
+            <!-- 折线 -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <polyline
+                    points="20,20 40,25 60,40 80,120 120,140 200,180"
+                    style="fill: none; stroke: black; stroke-width: 3"
+                />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <polyline
+                    points="0,40 40,40 40,80 80,80 80,120 120,120 120,160"
+                    style="fill: white; stroke: red; stroke-width: 4"
+                />
+            </svg>
+            <!-- 路径 -->
+            <!--
+                M = moveto
+                L = lineto
+                H = horizontal lineto
+                V = vertical lineto
+                C = curveto
+                S = smooth curveto
+                Q = quadratic Bézier curve
+                T = smooth quadratic Bézier curveto
+                A = elliptical Arc
+                Z = closepath
+                大写绝对定位，小写相对定位
+            -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <path d="M150 0 L75 200 L225 200 Z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="400" width="450">
+                <path id="lineAB" d="M 100 350 l 150 -300" stroke="red" stroke-width="3" fill="none" />
+                <path id="lineBC" d="M 250 50 l 150 300" stroke="red" stroke-width="3" fill="none" />
+                <path d="M 175 200 l 150 0" stroke="green" stroke-width="3" fill="none" />
+                <path d="M 100 350 q 150 -300 300 0" stroke="blue" stroke-width="5" fill="none" />
+                <!-- Mark relevant points -->
+                <g stroke="black" stroke-width="3" fill="black">
+                    <circle id="pointA" cx="100" cy="350" r="3" />
+                    <circle id="pointB" cx="250" cy="50" r="3" />
+                    <circle id="pointC" cx="400" cy="350" r="3" />
+                </g>
+                <!-- Label the points -->
+                <g font-size="30" font="sans-serif" fill="black" stroke="none" text-anchor="middle">
+                    <text x="100" y="350" dx="-30">A</text>
+                    <text x="250" y="50" dy="-10">B</text>
+                    <text x="400" y="350" dx="30">C</text>
+                </g>
+            </svg>
+            <!-- 文本 -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <text x="0" y="15" fill="red">I love SVG</text>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <text x="0" y="15" fill="red" transform="rotate(30 20,40)">I love SVG</text>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <defs>
+                    <path id="path1" d="M75,20 a1,1 0 0,0 100,0" />
+                </defs>
+                <text x="10" y="100" style="fill: red">
+                    <textPath xlink:href="#path1">I love SVG I love SVG</textPath>
+                </text>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <text x="10" y="20" style="fill: red">
+                    Several lines:
+                    <tspan x="10" y="45">First line</tspan>
+                    <tspan x="10" y="70">Second line</tspan>
+                </text>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <a xlink:href="http://www.w3schools.com/svg/" target="_blank">
+                    <text x="0" y="15" fill="red">I love SVG</text>
+                </a>
+            </svg>
+            <!-- stroke -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <g fill="none">
+                    <path stroke="red" d="M5 20 l215 0" />
+                    <path stroke="black" d="M5 40 l215 0" />
+                    <path stroke="blue" d="M5 60 l215 0" />
+                </g>
+            </svg>
+        </div>
+    </body>
+</html>
