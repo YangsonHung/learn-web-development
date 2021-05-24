@@ -17,6 +17,7 @@ deploy:
   strategy: git
   local_dir: SVG/react-svg-demo/demo/build
   token: $GITHUB_TOKEN
+  target-branch: gh-pages
   keep_history: true
   on:
-    branch: master:gh-pages
+    branch: master
