@@ -3,9 +3,11 @@ sudo: required
 node_js:
   - lts/*
 install:
-  - ./deploy.sh
+  - sudo cd ./SVG/react-svg-demo/demo
+  - sudo yarn install
 script:
-  - ./build.sh
+  - sudo cd ./SVG/react-svg-demo/demo
+  - sudo yarn build
 deploy:
   provider: pages
   cleanup: true
