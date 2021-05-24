@@ -80,7 +80,7 @@ export const Demo2 = () => {
     const ref = useRef(null);
 
     useEffect(() => {
-        console.log('ref.current :>> ', ref.current);
+        // console.log('ref.current :>> ', ref.current);
     }, []);
 
     return (
@@ -101,27 +101,29 @@ export const Demo2 = () => {
 export const Demo3 = () => {
     const [cx1, setCx1] = useState(120);
     const [cx2, setCx2] = useState(400);
-    const [r, setR] = useState(90);
+    const [r1, setR1] = useState(50);
+    const [r2, setR2] = useState(90);
     const [turn, setTurn] = useState(true);
 
     const onClick = () => {
         const move = document.getElementById('move');
-        // const scale = document.getElementById('scale');
+        const scale = document.getElementById('scale');
         if (turn) {
-
             setCx1(120);
             setCx2(400);
-            // setR(90);
+            setR1(50);
+            setR2(90);
             move.beginElement();
-            // scale.beginElement();
+            scale.beginElement();
             setTurn(false);
         } else {
 
             setCx1(400);
             setCx2(120);
-            // setR(50);
+            setR1(90);
+            setR2(50);
             move.beginElement();
-            // scale.beginElement();
+            scale.beginElement();
             setTurn(true);
         }
     };
@@ -138,9 +140,9 @@ export const Demo3 = () => {
                         id="move"
                         attributeType="XML"
                         attributeName="cx"
-                        form={cx1}
+                        from={cx1}
                         to={cx2}
-                        begin="btn.click"
+                        begin="click"
                         dur="1s"
                         fill="freeze"
                     />
@@ -148,28 +150,13 @@ export const Demo3 = () => {
                         id="scale"
                         attributeType="XML"
                         attributeName="r"
-                        to={r}
-                        // begin="btn.click"
+                        from={r1}
+                        to={r2}
+                        begin="click"
                         dur="1s"
                         fill="freeze"
                     />
-                    {/* <animateTransform
-                        id="scale"
-                        attributeType="XML"
-                        attributeName="transform"
-                        type="scale"
-                        from="1"
-                        to="1.7"
-                        dur="3s"
-                        // begin="0"
-                        // fill="freeze"
-                        // additive="sum"
-                        // repeatCount="indefinite"
-                    /> */}
                 </circle>
-                {/* <text id="btn" x="10" y="50" fill="blue">
-                        点击
-                </text> */}
             </svg>
         </div>
     );
