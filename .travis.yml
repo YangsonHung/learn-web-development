@@ -6,11 +6,6 @@ install:
   - yarn install
 script:
   - yarn build
-  # - cd ./build
-  # - git init
-  # - git add -A
-  # - git commit -m 'deploy'
-  # - git push -f git@github.com:YangsonHung/learn-web-development.git master:gh-pages
 deploy:
   provider: pages
   skip_cleanup: true
