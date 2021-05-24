@@ -1,16 +1,21 @@
 language: node_js
-sudo: required
 node_js:
   - lts/*
 install:
-  - sudo cd ./SVG/react-svg-demo/demo
-  - sudo yarn install
+  - cd ./SVG/react-svg-demo/demo
+  - yarn install
 script:
-  - sudo cd ./SVG/react-svg-demo/demo
-  - sudo yarn build
+  - cd ./SVG/react-svg-demo/demo
+  - yarn build
+  - cd ./build
+  - git init
+  - git add -A
+  - git commit -m 'deploy'
+  - git push -f git@github.com:YangsonHung/learn-web-development.git master:gh-pages
 deploy:
   provider: pages
   cleanup: true
+  strategy: git
   local_dir: SVG/react-svg-demo/demo/build
   token: $GITHUB_TOKEN
   keep_history: true
