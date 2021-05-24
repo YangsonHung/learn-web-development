@@ -7,11 +7,11 @@ install:
 script:
   - cd ./SVG/react-svg-demo/demo
   - yarn build
-  - cd ./build
-  - git init
-  - git add -A
-  - git commit -m 'deploy'
-  - git push -f git@github.com:YangsonHung/learn-web-development.git master:gh-pages
+  # - cd ./build
+  # - git init
+  # - git add -A
+  # - git commit -m 'deploy'
+  # - git push -f git@github.com:YangsonHung/learn-web-development.git master:gh-pages
 deploy:
   provider: pages
   cleanup: true
@@ -20,4 +20,4 @@ deploy:
   token: $GITHUB_TOKEN
   keep_history: true
   on:
-    branch: master
+    branch: master:gh-pages
