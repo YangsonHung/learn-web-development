@@ -1,4 +1,5 @@
 language: node_js
+sudo: required
 node_js:
   - lts/*
 install:
@@ -7,9 +8,9 @@ script:
   - ./build.sh
 deploy:
   provider: pages
-  skip_cleanup: true
+  cleanup: true
   local_dir: SVG/react-svg-demo/demo/build
-  github_token: $GITHUB_TOKEN
+  token: $GITHUB_TOKEN
   keep_history: true
   on:
     branch: master
