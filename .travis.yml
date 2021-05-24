@@ -5,7 +5,6 @@ install:
   - cd ./SVG/react-svg-demo/demo
   - yarn install
 script:
-  - cd ./SVG/react-svg-demo/demo
   - yarn build
   # - cd ./build
   # - git init
