@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        svg {
+            border: 1px solid indigo;
+        }
+        circle {
+            transform-origin: center;
+        }
+    </style>
+</head>
+<body>
+    <svg width="200" height="200">
+        <circle cx="100" cy="100" r="50" fill="none" stroke="#4DD0E1" stroke-width="10" stroke-dasharray="78 78">
+          <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0" to="360" dur="3" repeatCount="indefinite"></animateTransform>
+        </circle>
+      </svg>
+      <svg width="200" height="200">
+        <circle cx="100" cy="100" r="50" fill="none" stroke="#00ff99" stroke-width="10" stroke-dasharray="15 10 5">
+          <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0" to="360" dur="3" repeatCount="indefinite"></animateTransform>
+        </circle>
+      </svg>
+</body>
+</html>
