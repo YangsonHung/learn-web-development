@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            div {
+                width: 600px;
+                height: 400px;
+            }
+            #div {
+                width: 100px;
+                height: 100px;
+                background: red;
+                animation: myfirst 5s;
+                -moz-animation: myfirst 5s; /* Firefox */
+                -webkit-animation: myfirst 5s; /* Safari and Chrome */
+                -o-animation: myfirst 5s; /* Opera */
+            }
+            @keyframes myfirst {
+                0% {
+                    background: red;
+                }
+                25% {
+                    background: yellow;
+                }
+                50% {
+                    background: blue;
+                }
+                100% {
+                    background: green;
+                }
+            }
+
+            @-moz-keyframes myfirst /* Firefox */ {
+                0% {
+                    background: red;
+                }
+                25% {
+                    background: yellow;
+                }
+                50% {
+                    background: blue;
+                }
+                100% {
+                    background: green;
+                }
+            }
+
+            @-webkit-keyframes myfirst /* Safari and Chrome */ {
+                0% {
+                    background: red;
+                }
+                25% {
+                    background: yellow;
+                }
+                50% {
+                    background: blue;
+                }
+                100% {
+                    background: green;
+                }
+            }
+
+            @-o-keyframes myfirst /* Opera */ {
+                0% {
+                    background: red;
+                }
+                25% {
+                    background: yellow;
+                }
+                50% {
+                    background: blue;
+                }
+                100% {
+                    background: green;
+                }
+            }
+            #a {
+                background-image: linear-gradient(#e66465, #9198e5);
+            }
+            #b {
+                background-image: linear-gradient(to right, #e66465, #9198e5);
+            }
+            #c {
+                background-image: linear-gradient(to bottom right, #e66465, #9198e5);
+            }
+            #d {
+                background-image: linear-gradient(to bottom, #e66465, #9198e5);
+            }
+            #e {
+                background-image: linear-gradient(to top, #e66465, #9198e5);
+            }
+            #f {
+                background-image: linear-gradient(to left, #e66465, #9198e5);
+            }
+            #g {
+                background-image: linear-gradient(0deg, #e66465, #9198e5);
+            }
+            #h {
+                background-image: linear-gradient(to bottom left, #e66465, #9198e5);
+            }
+            #i {
+                background-image: linear-gradient(90deg, #e66465, #9198e5);
+            }
+            #j {
+                background-image: linear-gradient(180deg, #e66465, #9198e5);
+            }
+            #k {
+                background-image: linear-gradient(#e66465, #9198e5, #009900);
+            }
+            #l {
+                background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+            }
+            #m {
+                background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(255, 0, 0, 1));
+            }
+            #o {
+                background-image: repeating-linear-gradient(red, yellow 10%, green 20%);
+            }
+            #p {
+                background-image: radial-gradient(red, yellow, green);
+            }
+            #q {
+                background-image: radial-gradient(red 5%, yellow 35%, green 60%);
+            }
+            #r {
+                background-image: radial-gradient(circle, red, yellow, green);
+            }
+            #s {
+                background-image: radial-gradient(circle closest-side at 60% 55%, red, yellow, green);
+            }
+            #t {
+                background-image: repeating-radial-gradient(red, yellow 10%, green 15%);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="a">a</div>
+        <div id="b">b</div>
+        <div id="c">c</div>
+        <div id="d">d</div>
+        <div id="e">e</div>
+        <div id="f">f</div>
+        <div id="g">g</div>
+        <div id="h">h</div>
+        <div id="i">i</div>
+        <div id="j">j</div>
+        <div id="k">k</div>
+        <div id="l">l</div>
+        <div id="m">m</div>
+        <div id="o">o</div>
+        <div id="p">p</div>
+        <div id="q">q</div>
+        <div id="r">r</div>
+        <div id="s">s</div>
+        <div id="t">t</div>
+        <div id="u">u</div>
+        <div id="v">v</div>
+        <div id="w">w</div>
+        <div id="x">x</div>
+        <div id="y">y</div>
+        <div id="z">z</div>
+        <div id="div"></div>
+    </body>
+</html>

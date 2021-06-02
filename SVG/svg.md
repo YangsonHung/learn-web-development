@@ -2,8 +2,6 @@
 
 ## SVG元素
 
-
-
 ### 图形元素
 
 #### 线 `<line>`
@@ -21,8 +19,6 @@
 - x2：定义直线终点的x轴坐标，值类型： `<length>|<percentage>|<number>`，默认值是`0`
 - y2：定义直线终点的y轴坐标，值类型： `<length>|<percentage>|<number>`，默认值是`0`
 
-
-
 #### 折线 `<polyLine>`
 
 `<polyline>`元素是一个SVG基本形状，它创建了连接几个点的直线。通常，折线用于创建开放形状，因为最后一个点不必连接到第一个点。
@@ -35,8 +31,6 @@
 ```
 
 - points：定义绘制折线所需的点(x、y绝对坐标对)列表，坐标值可以用逗号隔开或者空格隔开
-
-  
 
 #### 矩形 `<rect>`
 
@@ -63,8 +57,6 @@
 
 > 从SVG2开始，x、y、width、height、rx和ry都是几何属性，这意味着这些属性也可以用作该元素的CSS属性
 
-
-
 #### 圆 `<circle>`
 
 ```html
@@ -78,8 +70,6 @@
 - r：圆的半径，小于或等于0的值将不会显示圆。值类型：`<length>`，默认值是`0`
 
 > 从SVG2开始，cx、cy、r都是几何属性，这意味着这些属性也可以用作该元素的CSS属性
-
-
 
 #### 椭圆 `<ellipse>`
 
@@ -96,8 +86,6 @@
 
 > 从SVG2开始，cx、cy、rx、ry都是几何属性，这意味着这些属性也可以用作该元素的CSS属性
 
-
-
 #### 多边形 `<polygon>`
 
 ```html
@@ -110,8 +98,6 @@
 ```
 
 - points：定义绘制多边形所需的点(x、y绝对坐标对)列表，坐标值可以用逗号隔开或者空格隔开
-
-
 
 #### 路径 `<path>`
 
@@ -146,8 +132,6 @@
 > Z = closepath
 > 大写绝对定位，小写相对定位
 
-
-
 #### 图像`<iamge>`
 
 ```html
@@ -155,8 +139,6 @@
   <image href="https://mdn.mozillademos.org/files/6457/mdn_logo_only_color.png" height="200" width="200"/>
 </svg>
 ```
-
-
 
 #### 文本`<text>`
 
@@ -182,8 +164,6 @@
 - rotate：旋转每个单独的字形方向，可以单独旋转符号
 - lengthAdjust：文本如何拉伸或压缩以适应textLength属性定义的宽度
 - textLength：文本应按比例调整以适应的宽度
-
-
 
 ### 结构元素
 
@@ -213,8 +193,6 @@
 
 > 从SVG2开始，x、y、宽度和高度都是几何属性，这意味着这些属性也可以用作CSS属性。
 
-
-
 #### `<defs>`
 
 `<defs>`元素用于存储稍后将使用的图形对象。在`<defs>`元素中创建的对象不会直接渲染。要显示它们，你必须引用它们，例如使用`<use>`元素。
@@ -237,8 +215,6 @@
 </svg>
 ```
 
-
-
 #### `<g>`
 
 `<g>` SVG元素是一个容器，用于将其他SVG元素分组
@@ -256,8 +232,6 @@
   <use href="#mycircle" />
 </svg>
 ```
-
-
 
 #### `<symbol>`
 
@@ -295,8 +269,6 @@
 
 - viewBox：这个属性定义了当前符号的SVG视口的范围。
 
-  
-
 #### `<use>`
 
 `<use>`元素从SVG文档中获取节点，并在其他地方复制它们
@@ -320,9 +292,6 @@
 > 宽度和高度对use元素没有影响，除非引用的元素有一个viewbox——也就是说，只有当use引用svg或symbol元素时，它们才有影响。
 >
 > 从SVG2开始，x、y、宽度和高度都是几何属性，这意味着这些属性也可以用作该元素的CSS属性。
-
-
-
 
 ### 文本内容元素
 
@@ -366,8 +335,6 @@
 - startOffset：文本的开始距离路径的开始应该偏移多远
 - textLength：文本将渲染到的空间的宽度。
 
-
-
 #### `<tspan>`
 
 在 `<text>`元素中，利用内含的`tspan`元素，可以调整文本和字体的属性以及当前文本的位置、绝对或相对坐标值。
@@ -395,15 +362,11 @@
 - lengthAdjust：文本如何拉伸或压缩以适应textLength属性定义的宽度
 - textLength：文本应按比例调整以适应的宽度。
 
-
-
 ### 滤镜元素
 
 #### `<filter>`
 
 `filter`元素作用是作为原子滤镜操作的容器。它不能直接呈现。可以利用目标SVG元素上的`filter`属性引用一个滤镜。
-
-
 
 ## svg属性
 
@@ -411,14 +374,158 @@
 
 #### 核心属性
 
+1. id
+2. lang
+3. tabindex
+4. xml:base
+5. xml:lang
+6. xml:space
+
 #### 样式属性
+
+1. class
+2. style
 
 ### Xlink 属性
 
+1. xlink:href
+2. xlink:type
+3. xlink:role
+4. xlink:arcrole
+5. xlink:title
+6. xlink:show
+7. xlink:actuate
+
 ### 展示属性
+
+> 所有的展示属性都可以作为CSS属性
+
+1. alignment-baseline
+
+2. baseline-shift
+
+3. clip
+
+4. clip-path
+
+5. clip-rule
+
+6. color
+
+7. color-interpolation
+
+8. color-interpolation-filters
+
+9. color-profile
+
+10. color-rendering
+
+11. cursor
+
+12. direction
+
+13. display
+
+14. dominant-baseline
+
+15. enable-background
+
+16. fill
+
+17. fill-opacity
+
+18. fill-rule
+
+19. filter
+
+20. flood-color
+
+21. flood-opacity
+
+22. font-family
+
+23. font-size
+
+24. font-size-adjust
+
+25. font-stretch
+
+26. font-style
+
+27. font-variant
+
+28. font-weight
+
+29. glyph-orientation-horizontal
+
+30. glyph-orientation-vertical
+
+31. image-rendering
+
+32. kerning
+
+33. letter-spacing
+
+34. lighting-color
+
+35. marker-end
+
+36. marker-mid
+
+37. marker-start
+
+38. mask
+
+39. opacity
+
+40. overflow
+
+41. pointer-events
+
+42. shape-rendering
+
+43. stop-color
+
+44. stop-opacity
+
+45. stroke
+
+46. stroke-dasharray
+
+47. stroke-dashoffset
+
+48. stroke-linecap
+
+49. stroke-linejoin
+
+50. stroke-miterlimit
+
+51. stroke-opacity
+
+52. stroke-width
+
+53. text-anchor
+
+54. text-decoration
+
+55. text-rendering
+
+56. transform
+
+57. transform-origin
+
+58. unicode-bidi
+
+59. vector-effect
+
+60. visibility
+
+61. word-spacing
+
+62. writing-mode
 
 ### 滤镜属性
 
 ### 动画属性
 
-###  事件属性
+### 事件属性
