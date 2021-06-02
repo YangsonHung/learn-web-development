@@ -1,29 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        svg {
-            border: 1px solid indigo;
-        }
-        circle {
-            transform-origin: center;
-        }
-    </style>
-</head>
-<body>
-    <svg width="200" height="200">
-        <circle cx="100" cy="100" r="50" fill="none" stroke="#4DD0E1" stroke-width="10" stroke-dasharray="78 78">
-          <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0" to="360" dur="3" repeatCount="indefinite"></animateTransform>
-        </circle>
-      </svg>
-      <svg width="200" height="200">
-        <circle cx="100" cy="100" r="50" fill="none" stroke="#00ff99" stroke-width="10" stroke-dasharray="15 10 5">
-          <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0" to="360" dur="3" repeatCount="indefinite"></animateTransform>
-        </circle>
-      </svg>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>demo9</title>
+        <style>
+            body {
+                background-color: black;
+            }
+            svg {
+                border: 1px solid white;
+                margin: 0 auto;
+                display: block;
+                width: 400px;
+                height: 400px;
+            }
+            circle {
+                transform-origin: center;
+            }
+        </style>
+    </head>
+    <body>
+        <svg>
+            <circle
+                id="line1"
+                cx="200"
+                cy="200"
+                r="100"
+                fill="none"
+                stroke="#F00"
+                stroke-width="30"
+                stroke-dasharray=""
+            >
+                <!-- <animateTransform
+                    attributeName="transform"
+                    attributeType="XML"
+                    type="rotate"
+                    from="0"
+                    to="360"
+                    dur="9"
+                    repeatCount="indefinite"
+                /> -->
+            </circle>
+            <circle
+                id="line2"
+                cx="200"
+                cy="200"
+                r="100"
+                fill="none"
+                stroke="#F0F"
+                stroke-width="30"
+                stroke-dasharray=""
+                style="transform: rotate(90deg);"
+            >
+            </circle>
+            <circle
+                id="line3"
+                cx="200"
+                cy="200"
+                r="115"
+                fill="none"
+                stroke="#0F0"
+                stroke-width="1"
+                stroke-dasharray=""
+            >
+            </circle>
+            <circle
+                id="line4"
+                cx="200"
+                cy="200"
+                r="86"
+                fill="none"
+                stroke="#Ff0"
+                stroke-width="2"
+                stroke-dasharray=""
+            >
+            </circle>
+        </svg>
+        <script>
+            const line1 = document.getElementById('line1');
+            const line2 = document.getElementById('line2');
+            const line3 = document.getElementById('line3');
+            const line4 = document.getElementById('line4');
+            // 圆周长
+            const perimeter = 2 * Math.PI * 100;
+            const perimeter2 = 2 * Math.PI * 115;
+            const perimeter3 = 2 * Math.PI * 86;
+            // 45/2 === 360/16 将圆360°16等分，每等分的圆心角，然后计算出弧长
+            const l = (45 / 2) * Math.PI * (100 / 180);
+            // 计算出空白值的长度
+            const d1 = 2;
+            // const d2 = l - d1;
+            const d2 = Math.ceil(perimeter - d1);
+            line1 && (line1.style.strokeDasharray = `${d1} ${d2}`);
+            line2 && (line2.style.strokeDasharray = `${d1} ${d2}`);
+            const d3 = perimeter2 / 4;
+            const d4 = Math.ceil(perimeter2 - d3)
+            line3 && (line3.style.strokeDasharray = `${d3} ${d4}`);
+
+            const d5 = perimeter3 / 4;
+            const d6 = Math.ceil(perimeter3 - d5)
+
+            line4.style.strokeDasharray = `${d5} ${d6}`;
+        </script>
+    </body>
 </html>
