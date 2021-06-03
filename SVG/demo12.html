@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>demo12</title>
+        <style>
+            #progress {
+                width: 50%;
+                height: 30px;
+                border: 1px solid #ccc;
+                border-radius: 15px;
+                margin: 50px 0 0 100px;
+                overflow: hidden;
+                box-shadow: 0 0 5px 0px #ddd inset;
+            }
+            #progress span {
+                display: inline-block;
+                width: 70%;
+                height: 100%;
+                background: linear-gradient(45deg, #2989d8 33%, #7db9e8 34%, #7db9e8 59%, #2989d8 60%);
+                background-size: 60px 30px;
+                text-align: center;
+                color: #fff;
+                animation: load 3s ease-in;
+            }
+            @keyframes load {
+                0% {
+                    width: 0%;
+                }
+                100% {
+                    width: 70%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="progress">
+            <span></span>
+        </div>
+    </body>
+</html>
