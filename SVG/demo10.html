@@ -23,13 +23,52 @@
         <circle cx="50" cy="50" r="40">
             <path d="" fill="none" stroke="" stroke-width="" />
     </svg>
-    <svg style="border: 1px solid violet">
-        <path d="
-                M50 50
-                m -40, 0
-                a 40,40 0 1,0 80,0
-                a 40,40 0 1,0 -80,0
-                " fill="none" stroke="" stroke-width="" />
+    <svg width="600" height="600" style="border: 3px solid indigo">
+        <path d="M300 300 m-150 0 a150 150 0 1,0 300 0 a150 150 0 1,0 -300 0" fill="none" stroke="red" stroke-width="" />
+    </svg>
+    <svg width="600" height="600" style="border: 3px solid indigo">
+        <path
+            d="
+                M450 300
+                a150 150 0 0,1 -150 150
+                v50
+                a200 200 0 0,0 200 -200
+                z"
+            fill="none"
+            stroke="blue"
+            style="transform-origin: center;"
+        >
+            <animateTransform
+                attributeName="transform"
+                attributeType="XML"
+                type="rotate"
+                from="0"
+                to="360"
+                dur="3"
+                repeatCount="indefinite"
+            />
+        </path>
+        <path
+            d="
+                M300 150
+                a150 150 0 0,0 -150 150
+                h-50
+                a200 200 0 0,1 200 -200
+                z"
+            fill="none"
+            stroke="red"
+            style="transform-origin: center;"
+        >
+            <animateTransform
+                attributeName="transform"
+                attributeType="XML"
+                type="rotate"
+                from="0"
+                to="360"
+                dur="3"
+                repeatCount="indefinite"
+            />
+        </path>
     </svg>
 </body>
 
