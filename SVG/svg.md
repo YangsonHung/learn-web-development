@@ -368,7 +368,7 @@
 
 `filter`元素作用是作为原子滤镜操作的容器。它不能直接呈现。可以利用目标SVG元素上的`filter`属性引用一个滤镜。
 
-## svg属性
+## SVG属性
 
 ### 通用属性
 
@@ -529,3 +529,47 @@
 ### 动画属性
 
 ### 事件属性
+
+## SVG滤镜
+
+滤镜通过 `<filter>` 元素进行定义，并且置于 `<defs>` 区块中。在 filter 标签中提供一系列图元（primitives），以及在前一个基本变换操作上建立的另一个操作（比如添加模糊后又添加明亮效果）。如果要应用所创建的滤镜效果，只需要为 SVG 图形元素设置 filter 属性即可。
+
+SVG滤镜：
+
+1. feBlend - 与图像相结合的滤镜
+
+2. feColorMatrix - 用于彩色滤光片转换
+
+3. feComponentTransfer
+
+4. feComposite
+
+5. feConvolveMatrix
+
+6. feDiffuseLighting
+
+7. feDisplacementMap
+
+8. feFlood
+
+9. feGaussianBlur
+
+10. feImage
+
+11. feMerge
+
+12. feMorphology
+
+13. feOffset - 过滤阴影
+
+14. feSpecularLighting
+
+15. feTile
+
+16. feTurbulence
+
+17. feDistantLight - 用于照明过滤
+
+18. fePointLight - 用于照明过滤
+
+19. feSpotLight - 用于照明过滤
